@@ -70,7 +70,7 @@ namespace DataAnalyzer
         {
             string[] outputArray = new string[maxNumber];
 
-            for (int i = 0; i < outputArray.Length; i++) //Check every number from 1 to maximal possible number
+            for (int i = 0; i < outputArray.Length; i++) //Check every number from 1 to maximal number
             {
                 for (int j = 0; j < inputArray.Length; j++) //Go through all the sequences
                 {
@@ -90,7 +90,7 @@ namespace DataAnalyzer
         {
             string[] inWhichDrawNumberWonArray = new string[maxNumber];
 
-            for (int i = 0; i < inWhichDrawNumberWonArray.Length; i++) //Check every number from 1 to maximal possible number
+            for (int i = 0; i < inWhichDrawNumberWonArray.Length; i++) //Check every number from 1 to maximal number
             {
                 for (int j = 0; j < inputArray.Length; j++) //Go through all the sequences
                 {
