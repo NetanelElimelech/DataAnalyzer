@@ -315,26 +315,26 @@ namespace DataAnalyzer
 
             int[][] tempControlArray = CustomArray.CompareArrays(CustomArray.EPurpose.control, tempControlArrayInt, controlDrawsArray, tempControlArrayInt.Length, combFilter);
             //Filter array
-            int[][] finalControlArrayFiltered = CustomArray.ReduceArrayByPullingOutNulls(tempControlArray);
+            int[][] finalControlArrayFiltered = CustomArray.ReduceArrayByPushingOutNulls(tempControlArray);
 
             //Create temporary combinations array to be filtered
-            int[][] tempCombinationsArray = CustomArray.CompareArrays(/*CustomArray.EPurpose.combinations, */tempCombinationsSixArrayInt, finalControlArrayFiltered, tempCombinationsSixArrayInt.Length, combFilter);
+            int[][] tempCombinationsArray = CustomArray.CompareArrays(tempCombinationsSixArrayInt, finalControlArrayFiltered, tempCombinationsSixArrayInt.Length, combFilter);
 
             //Prepare final combinations array
             int[][] finalCombinationsArrayFiltered;
 
             if (EvensOddsCheckBox.IsChecked == true)
             {
-                //Pull out evens-only or odds-only combinations
-                int[][] combinationsArrayWithoutEvensOnlyOrOddsOnly = CustomArray.PullOutEvensOrOddsOnlyComb(tempCombinationsArray);
-                //Pull out nulls
-                finalCombinationsArrayFiltered = CustomArray.ReduceArrayByPullingOutNulls(combinationsArrayWithoutEvensOnlyOrOddsOnly);
+                //Remove evens-only or odds-only combinations
+                int[][] combinationsArrayWithoutEvensOnlyOrOddsOnly = CustomArray.RemoveEvensOrOddsOnlyComb(tempCombinationsArray);
+                //Push out nulls
+                finalCombinationsArrayFiltered = CustomArray.ReduceArrayByPushingOutNulls(combinationsArrayWithoutEvensOnlyOrOddsOnly);
             }
 
             else
             {
-                //Pull out nulls
-                finalCombinationsArrayFiltered = CustomArray.ReduceArrayByPullingOutNulls(tempCombinationsArray);
+                //Push out nulls
+                finalCombinationsArrayFiltered = CustomArray.ReduceArrayByPushingOutNulls(tempCombinationsArray);
             }
 
             //Display
@@ -418,7 +418,7 @@ namespace DataAnalyzer
             int[][] tempControlArray = CustomArray.CompareArrays(CustomArray.EPurpose.statistics, tempControlArrayInt, controlDrawsArray, tempControlArrayInt.Length, combFilter);
 
             //Filter array
-            int[][] finalControlArrayFiltered = CustomArray.ReduceArrayByPullingOutNulls(tempControlArray);
+            int[][] finalControlArrayFiltered = CustomArray.ReduceArrayByPushingOutNulls(tempControlArray);
 
             //Create string array to be displayed via TableView
             string[][] partialCombArray = CustomArray.CreatePartialCombArray(finalControlArrayFiltered);

@@ -60,7 +60,7 @@
         <TextBox x:Name="chosenNumbersTextBox" HorizontalAlignment="Left" Height="40" Margin="744,581,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="408" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="11"/>
         <Label Content="Filter" HorizontalAlignment="Left" Margin="743,624,0,72" VerticalAlignment="Center" Width="46" HorizontalContentAlignment="Left" Height="25" RenderTransformOrigin="0.587,0.8"/>
         <Button x:Name="SpecifyNumbersToFilter" Style="{StaticResource BTNCORNER}" Content="Numbers&#xD;&#xA;to filter" HorizontalAlignment="Left" Margin="791,630,0,0" VerticalAlignment="Top" Width="80" Height="40" FontSize="11" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal"/>
-        <CheckBox x:Name="EvensOddsCheckBox" Content="Pull out evens-only&#xA;&amp; odds-only combinations" HorizontalAlignment="Left" Margin="571,639,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="EvensOddsCheckBox" Content="Remove evens-only&#xA;&amp; odds-only combinations" HorizontalAlignment="Left" Margin="569,639,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

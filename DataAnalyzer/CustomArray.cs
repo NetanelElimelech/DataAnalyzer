@@ -165,7 +165,7 @@ namespace DataAnalyzer
         }
 
         //Reduce array size
-        public static int[][] ReduceArrayByPullingOutNulls(int[][] inputArray)
+        public static int[][] ReduceArrayByPushingOutNulls(int[][] inputArray)
         {
             int[][] outputArray = new int[GetFilteredArrayLength(inputArray)][];
             int iteration = 0;
@@ -294,7 +294,7 @@ namespace DataAnalyzer
             return outputArray;
         }
 
-        public static int[][] PullOutEvensOrOddsOnlyComb(int[][] inputArray)
+        public static int[][] RemoveEvensOrOddsOnlyComb(int[][] inputArray)
         {
             int[][] outputArray = new int[inputArray.Length][];
 
@@ -331,7 +331,7 @@ namespace DataAnalyzer
 
             return outputArray;
         }
-        //TODO: Pull out odds-only and evens-only combinations
+        //TODO: Push out odds-only and evens-only combinations
         //TODO: In Version 2 the data should be DB-based
         //TODO: Working with one single file for all
     }
