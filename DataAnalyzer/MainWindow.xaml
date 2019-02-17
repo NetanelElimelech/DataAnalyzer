@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DataAnalyzer"
         mc:Ignorable="d"
-        Title="Data Analyzer - v. 1.0" Height="750" Width="1200" ResizeMode="NoResize">
+        Title="Data Analyzer - v. 1.5" Height="750" Width="1200" ResizeMode="NoResize">
 
 
     <Grid>
@@ -20,7 +20,7 @@
             
 
         </Menu>
-        <Button x:Name="LoadFileButton" Style="{StaticResource BTNCORNER}" Content="Load file" HorizontalAlignment="Left" Margin="437,60,0,0" VerticalAlignment="Top" Width="80" Height="40" FontSize="16" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal" Click="LoadFileButton_Click"/>
+        <Button x:Name="LoadFileButton" Style="{StaticResource BTNCORNER}" Content="Preview draws" HorizontalAlignment="Left" Margin="437,60,0,0" VerticalAlignment="Top" Width="120" Height="40" FontSize="16" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal" Click="LoadFileButton_Click"/>
         <TextBox x:Name="inputTextBox" HorizontalAlignment="Left" Height="450" Margin="30,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="370" BorderThickness="0" ClipToBounds="True" VerticalScrollBarVisibility="Auto"/>
         <TextBox x:Name="outputTextBox" HorizontalAlignment="Right" Height="450" Margin="0,60,30,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="370" BorderThickness="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
         <Label Content="File content" Style="{StaticResource RegularLabel}" HorizontalAlignment="Left" Margin="162,25,0,0" VerticalAlignment="Top" Width="110" FontSize="15" />
@@ -47,7 +47,7 @@
         <Label Content="Combine numbers" HorizontalAlignment="Center" Margin="872,546,152,145" VerticalAlignment="Center" Width="170" FontSize="15" HorizontalContentAlignment="Center" Height="30"/>
         <Button x:Name="CombineButton" Style="{StaticResource BTNCORNER}" Content="Combine" HorizontalAlignment="Left" Margin="885,630,0,0" VerticalAlignment="Top" Width="80" Height="40" FontSize="16" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal" Click="CombineButton_Click"/>
         <Button x:Name="clearCombinationsButton1" Style="{StaticResource BTNCORNER}" Content="Clear" HorizontalAlignment="Left" Margin="1072,630,0,0" VerticalAlignment="Top" Width="80" Height="40" FontSize="16" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal" Click="ClearCombinationsButton_Click"/>
-        <Label x:Name="drawLabel" Content="" HorizontalAlignment="Left" Margin="30,30,0,0" VerticalAlignment="Top" Width="110" FontSize="14"/>
+        <Label x:Name="drawLabel" Content="Draw #" HorizontalAlignment="Left" Margin="30,30,0,0" VerticalAlignment="Top" Width="110" FontSize="14"/>
         <DataGrid x:Name="dataGridView" HorizontalAlignment="Left" Height="450" Margin="794,60,0,0" VerticalAlignment="Top" Width="250" GridLinesVisibility="None" FontSize="14" BorderThickness="0" ClipToBounds="True" Visibility="Hidden"/>
         <Button x:Name="PartialCombinationsButton" Style="{StaticResource BTNCORNER}" Content="Partial" HorizontalAlignment="Left" Margin="978,630,0,0" VerticalAlignment="Top" Width="80" Height="40" FontSize="16" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal" Click="PartialCombinationsButton_Click"/>
         <ComboBox x:Name="FilterComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="34" Margin="744,648,0,0">
@@ -61,6 +61,5 @@
         <Label Content="Filter" HorizontalAlignment="Left" Margin="743,624,0,72" VerticalAlignment="Center" Width="46" HorizontalContentAlignment="Left" Height="25" RenderTransformOrigin="0.587,0.8"/>
         <Button x:Name="SpecifyNumbersToFilter" Style="{StaticResource BTNCORNER}" Content="Numbers&#xD;&#xA;to filter" HorizontalAlignment="Left" Margin="791,630,0,0" VerticalAlignment="Top" Width="80" Height="40" FontSize="11" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal"/>
         <CheckBox x:Name="EvensOddsCheckBox" Content="Remove evens-only&#xA;&amp; odds-only combinations" HorizontalAlignment="Left" Margin="569,639,0,0" VerticalAlignment="Top"/>
-
     </Grid>
 </Window>

@@ -7,8 +7,7 @@ namespace DataAnalyzer
         public RatingCombiner(string fileContent, int maxNumber)
         {
             int[][] intArrayFromFile = CreateIntArrayFromString(fileContent);
-            Tables.allNumbersCount = Calculators.CalculateTotalNumbersCount(intArrayFromFile[0].Length, intArrayFromFile.Length);
-
+            Tables.allNumbersCount = Calculators.CalculateTotalNumbersCount(intArrayFromFile[0].Length - 2, intArrayFromFile.Length);
 
             int[] numbersCounted = Calculators.CountEverySingleNumber(maxNumber, intArrayFromFile);
 

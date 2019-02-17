@@ -10,13 +10,14 @@ namespace DataAnalyzer
     {
         int lowerStepsLimit;
         int upperStepsLimit;
-        readonly int[][] drawsArray;
-        readonly int[][] intArrayFromFile;
+        readonly int[][] drawsIntArray;
 
         public AvgSpanCombiner(string fileContent, int maxNumber, string lowerStepsLimitString, string upperStepsLimitString)
         {
-            intArrayFromFile = CreateIntArrayFromString(fileContent);
-            drawsArray = SeparateToNumbers(CreateDrawsNumberWonArray(intArrayFromFile, maxNumber));
+            int[][] intArrayFromFile = CreateIntArrayFromString(fileContent);
+            string[] drawsStringArray = CreateInitialDrawsArray(intArrayFromFile, maxNumber);
+            drawsIntArray = SeparateToNumbers(drawsStringArray);
+
             GetLowerStepsLimit(lowerStepsLimitString);
             GetUpperStepsLimit(upperStepsLimitString);
         }
@@ -55,14 +56,9 @@ namespace DataAnalyzer
             return upperStepsLimit;
         }
 
-        public int[][] GetInitArrayFromFile()
-        {
-            return intArrayFromFile;
-        }
-
         public int[][] GetDrawsIntArray()
         {
-            return drawsArray;
+            return drawsIntArray;
         }
     }
 }

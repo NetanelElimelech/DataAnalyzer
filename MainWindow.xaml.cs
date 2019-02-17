@@ -27,13 +27,11 @@ namespace DataAnalyzer
         public MainWindow()
         {
             InitializeComponent();
-            inputTextBox.Text = FetchFileFromUrl();
             FetchFileFromUrl();
         }
 
-        private string FetchFileFromUrl()
+        private void FetchFileFromUrl()
         {
-            string fileContent = null;
             try
             {
                 var webRequest = WebRequest.Create(@"https://raw.githubusercontent.com/NetanelElimelech/_DataAnalyzer---OOP/master/allDraws.txt");
@@ -42,20 +40,37 @@ namespace DataAnalyzer
                 using (var content = response.GetResponseStream())
                 using (var reader = new StreamReader(content))
                 {
-                    fileContent = reader.ReadToEnd();
-                    inputTextBox.AppendText(fileContent);
+                    inputTextBox.AppendText(reader.ReadToEnd());
                     reader.Close();
                 }
             }
 
             catch
             {
-                CustomMessageBox customMessageBox = new CustomMessageBox();
-                customMessageBox.Show();
-                customMessageBox.Title = "File not found";
-            }
+                MessageBoxResult result = MessageBox.Show("Are you sure? This will delete your current game", "New game", MessageBoxButton.YesNoCancel);
 
-            return fileContent;
+                switch (result)
+                {
+                    case MessageBoxResult.Yes:
+                        bombArraySize = 10;
+                        StartNewGame(bombArraySize, 3, 0, 0);
+                        time = TimeSpan.FromSeconds(60);
+                        break;
+                    case MessageBoxResult.No:
+                        isOnPause = false;
+                        isRunning = true;
+                        StartPauseResumeButton.Content = "PAUSE";
+                        break;
+                }
+            }
+        }
+
+        public static class ExtMessageBox
+        {
+            public enum CustomMessageBoxButton (this MessageBoxButton)
+            {
+
+            }
         }
 
         private string GetFileContentAsString()
@@ -76,8 +91,7 @@ namespace DataAnalyzer
         {
             inputTextBox.Clear();
             outputTextBox.Clear();
-            inputTextBox.Text = FetchFileFromUrl();
-            //inputTextBox.Text = GetFileContentAsString();
+            inputTextBox.Text = GetFileContentAsString();
         }
 
         private void LoadFileButton_Click(object sender, RoutedEventArgs e)
@@ -104,9 +118,10 @@ namespace DataAnalyzer
         private void CalculateRateButton_Click(object sender, RoutedEventArgs e)
         {
             PrepareGUIforTableView();
-            DisplayFileContent();
-            string fileContent = FetchFileFromUrl();
+
+            string fileContent = GetFileContentAsString();
             int maxNumber = GetMaxNumber();
+            inputTextBox.Text = fileContent;
 
             dataGridView.ItemsSource = new RatingCombiner(fileContent, maxNumber).GetView();
         }
@@ -114,10 +129,10 @@ namespace DataAnalyzer
         private void CalculateAvgSpanButton_Click(object sender, RoutedEventArgs e)
         {
             PrepareGUIforTextBoxes();
-            DisplayFileContent();
 
-            string fileContent = FetchFileFromUrl();
+            string fileContent = GetFileContentAsString();
             int maxNumber = GetMaxNumber();
+            inputTextBox.Text = fileContent;
 
             string lowerStepsLimitString = lowerStepsLimitTextBox.Text;
             string upperStepsLimitString = upperStepsLimitTextBox.Text;
@@ -128,12 +143,13 @@ namespace DataAnalyzer
             double avg = 0;
             int jump = 0;
 
+            int[][] intArrayFromFile = avgSpanCombiner.GetInitArrayFromFile();
             int[][] drawsArray = avgSpanCombiner.GetDrawsIntArray();
 
             for (int i = 0; i < drawsArray.Length; i++)
             {
                 avg = 0;
-                jumpsArray[i] = new int[drawsArray[i].Length - 1];
+                jumpsArray[i] = new int[drawsArray[i].Length - 2];
                 outputTextBox.AppendText($"{i + 1} appears every:\n");
 
                 for (int j = 0; j < jumpsArray[i].Length; j++)
@@ -153,26 +169,31 @@ namespace DataAnalyzer
         private void ShowDrawsButton_Click(object sender, RoutedEventArgs e)
         {
             PrepareGUIforTextBoxes();
-            DisplayFileContent();
 
-            string fileContent = FetchFileFromUrl();
+            drawLabel.Content = "Draw #";
+            string fileContent = GetFileContentAsString();
             int maxNumber = GetMaxNumber();
 
-            string[] drawsArrayToBeDisplayed = new DrawsCombiner(fileContent, maxNumber).GetDrawsStringArray();
+            inputTextBox.Text = fileContent;
 
-            for (int i = 0; i < drawsArrayToBeDisplayed.Length - 1; i++)
+            string[] drawsArray = new DrawsCombiner(fileContent, maxNumber).GetDrawsStringArray();
+
+            //TODO: First put the data in array and then print it out
+            for (int i = 0; i < drawsArray.Length; i++)
             {
-                outputTextBox.AppendText($"{drawsArrayToBeDisplayed[i]}\n");
+                outputTextBox.AppendText($"{i + 1} appears in:\n{drawsArray[i]}\n");
             }
         }
 
         private void LastAppearanceButton_Click(object sender, RoutedEventArgs e)
         {
             PrepareGUIforTableView();
-            DisplayFileContent();
+            drawLabel.Content = "Draw #";
 
-            string fileContent = FetchFileFromUrl();
+            string fileContent = GetFileContentAsString();
             int maxNumber = GetMaxNumber();
+
+            inputTextBox.Text = fileContent;
 
             dataGridView.ItemsSource = new LastAppearanceCombiner(fileContent, maxNumber).GetView();
 

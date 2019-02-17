@@ -56,11 +56,18 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AvgSpanCombiner.cs" />
+    <Compile Include="CustomMessageBox.xaml.cs">
+      <DependentUpon>CustomMessageBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DrawsCombiner.cs" />
     <Compile Include="LastAppearanceCombiner.cs" />
     <Compile Include="NumbersCombiner.cs" />
     <Compile Include="RatingCombiner.cs" />
     <Compile Include="Tables.cs" />
+    <Page Include="CustomMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
