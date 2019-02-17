@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.IO;
+using System.Net;
+using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,6 +27,20 @@ namespace DataAnalyzer
         public MainWindow()
         {
             InitializeComponent();
+            FetchFileFromUrl();
+        }
+
+        private void FetchFileFromUrl()
+        {
+            var webRequest = WebRequest.Create(@"https://raw.githubusercontent.com/NetanelElimelech/_DataAnalyzer---OOP/master/allDraws.txt");
+
+            using (var response = webRequest.GetResponse())
+            using (var content = response.GetResponseStream())
+            using (var reader = new StreamReader(content))
+            {
+                inputTextBox.AppendText(reader.ReadToEnd());
+                reader.Close();
+            }
         }
 
         private string GetFileContentAsString()
