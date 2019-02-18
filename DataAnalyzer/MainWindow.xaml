@@ -17,7 +17,8 @@
                 <Separator />
                 <MenuItem Header="_Exit" />
             </MenuItem>
-            
+
+
 
         </Menu>
         <Button x:Name="LoadFileButton" Style="{StaticResource BTNCORNER}" Content="Preview draws" HorizontalAlignment="Left" Margin="437,60,0,0" VerticalAlignment="Top" Width="120" Height="40" FontSize="16" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal" Click="LoadFileButton_Click"/>
@@ -61,5 +62,7 @@
         <Label Content="Filter" HorizontalAlignment="Left" Margin="743,624,0,72" VerticalAlignment="Center" Width="46" HorizontalContentAlignment="Left" Height="25" RenderTransformOrigin="0.587,0.8"/>
         <Button x:Name="SpecifyNumbersToFilter" Style="{StaticResource BTNCORNER}" Content="Numbers&#xD;&#xA;to filter" HorizontalAlignment="Left" Margin="791,630,0,0" VerticalAlignment="Top" Width="80" Height="40" FontSize="11" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal"/>
         <CheckBox x:Name="EvensOddsCheckBox" Content="Remove evens-only&#xA;&amp; odds-only combinations" HorizontalAlignment="Left" Margin="569,639,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="HowManyDrawsTextBox" Height="24" TextWrapping="Wrap" Width="120" HorizontalAlignment="Left" Margin="569,582,0,0" VerticalAlignment="Top" Text="all"/>
+        <Label Content="How many draws consider" HorizontalAlignment="Left" Margin="569,556,0,0" VerticalAlignment="Top" Width="198" FontSize="12"/>
     </Grid>
 </Window>

@@ -312,13 +312,33 @@ namespace DataAnalyzer
             return combFilter;
         }
 
+        int HowManyDrawsConsider(int maxDrawsToConsider)
+        {
+            int howManyDrawsConsider = 0;
+
+            bool success = int.TryParse(HowManyDrawsTextBox.Text, out int parsedValue);
+
+            if (success)
+            {
+                howManyDrawsConsider = parsedValue;
+            }
+
+            else
+            {
+                howManyDrawsConsider = maxDrawsToConsider;
+            }
+
+            return howManyDrawsConsider;
+        }
+
         private void CombineButton_Click(object sender, RoutedEventArgs e)
         {
             PrepareGUIforTextBoxes();
 
             int combFilter = GetCombFilterValue();
 
-            string fileContent = GetFileContentAsString();
+            //string fileContent = GetFileContentAsString();
+            string fileContent = FetchFileFromUrl();
             inputTextBox.Text = fileContent;
 
             int[] chosenNumbers = CustomArray.ParseStringArray(Regex.Split(chosenNumbersTextBox.Text, @"(?=\s)"));
@@ -335,10 +355,29 @@ namespace DataAnalyzer
             // Create control array of five, four, three numbers
             int[][] tempControlArrayInt = CustomArray.CreateCombinationsArray(combinationsShort, combFilter);
 
-            // Create final array of five, four, three numbers
-            int[][] controlDrawsArray = CustomArray.CreateIntArrayFromString(fileContent);
+            // Create temp array of draws
+            int[][] tempControlDrawsArray = CustomArray.CreateIntArrayFromString(fileContent);
+            int[][] controlDrawsArray = RemoveFirstAndLastElementsFromArray(tempControlDrawsArray);
 
-            int[][] tempControlArray = CustomArray.CompareArrays(CustomArray.EPurpose.control, tempControlArrayInt, controlDrawsArray, tempControlArrayInt.Length, combFilter);
+            int[][] RemoveFirstAndLastElementsFromArray(int[][] inputArray)
+            {
+                int[][] outputArray = new int[inputArray.Length][];
+                for (int i = 0; i < inputArray.Length; i++)
+                {
+                    outputArray[i] = new int[6];
+                    for (int j = 0; j < inputArray[i].Length - 2; j++)
+                    {
+                        outputArray[i][j] = inputArray[i][j + 1];
+                    }
+                }
+                return outputArray;
+            }
+            //// Create final array of draws
+            //int[][] controlDrawsArray = CustomArray.CreateIntArrayFromString(fileContent); //2 5 8 9 10 11 15 16 22 28 30 32
+
+            int howManyDrawsConsider = HowManyDrawsConsider(controlDrawsArray.Length);
+
+            int[][] tempControlArray = CustomArray.CompareArrays(CustomArray.EPurpose.control, tempControlArrayInt, controlDrawsArray, tempControlArrayInt.Length, howManyDrawsConsider, combFilter);
             //Filter array
             int[][] finalControlArrayFiltered = CustomArray.ReduceArrayByPushingOutNulls(tempControlArray);
 
@@ -439,8 +478,9 @@ namespace DataAnalyzer
             // Create final array of five
             int[][] controlDrawsArray = CustomArray.CreateIntArrayFromString(fileContent);
 
+            int howManyDrawsConsider = HowManyDrawsConsider(controlDrawsArray.Length);
             //Compare
-            int[][] tempControlArray = CustomArray.CompareArrays(CustomArray.EPurpose.statistics, tempControlArrayInt, controlDrawsArray, tempControlArrayInt.Length, combFilter);
+            int[][] tempControlArray = CustomArray.CompareArrays(CustomArray.EPurpose.statistics, tempControlArrayInt, controlDrawsArray, tempControlArrayInt.Length, howManyDrawsConsider, combFilter);
 
             //Filter array
             int[][] finalControlArrayFiltered = CustomArray.ReduceArrayByPushingOutNulls(tempControlArray);

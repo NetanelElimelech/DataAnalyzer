@@ -191,37 +191,50 @@ namespace DataAnalyzer
 
             for (int i = 0; i < outputArray.Length; i++)
             {
-                outputArray[i] = new int[combFilter + 1];
+                outputArray[i] = new int[outerLoopArray[i].Length];
             }
-            for (int i = 0; i < outerLoopArray.Length; i++)
+
+            if (innerLoopArray.Length == 0)
             {
-                for (int j = 0; j < innerLoopArray.Length; j++)
+                for (int i = 0; i < outputArray.Length; i++)
                 {
-                    int test = 0;
+                    outputArray[i] = outerLoopArray[i];
+                }
+            }
 
-                    foreach (int item in innerLoopArray[j])
+            else
+            {
+                for (int i = 0; i < outerLoopArray.Length; i++)
+                {
+                    for (int j = 0; j < innerLoopArray.Length; j++)
                     {
-                        if (Array.Exists(outerLoopArray[i], control => control == item))
+                        int test = 0;
+
+                        foreach (int item in innerLoopArray[j])
                         {
-                            test++;
+                            if (Array.Exists(outerLoopArray[i], control => control == item))
+                            {
+                                test++;
+                            }
                         }
-                    }
-                    if (test == combFilter)
-                    {
-                        outputArray[i] = null;
-                        break;
-                    }
+                        if (test == combFilter)
+                        {
+                            outputArray[i] = null;
+                            break;
+                        }
 
-                    else
-                    {
-                        outputArray[i] = outerLoopArray[i];
+                        else
+                        {
+                            outputArray[i] = outerLoopArray[i];
+                        }
                     }
                 }
             }
+
             return outputArray;
         }
 
-        public static int[][] CompareArrays(EPurpose purpose, int[][] outerLoopArray, int[][] innerLoopArray, int outputArraySize, int combFilter)
+        public static int[][] CompareArrays(EPurpose purpose, int[][] outerLoopArray, int[][] innerLoopArray, int outputArraySize, int breakhere, int combFilter)
         {
             int[][] outputArray = new int[outputArraySize][];
 
@@ -232,7 +245,8 @@ namespace DataAnalyzer
 
             for (int i = 0; i < outerLoopArray.Length; i++)
             {
-                for (int j = 0; j < innerLoopArray.Length; j++)
+                for (int j = 0; j < breakhere; j++)
+                //for (int j = 0; j < innerLoopArray.Length; j++)
                 {
                     int test = 0;
 
