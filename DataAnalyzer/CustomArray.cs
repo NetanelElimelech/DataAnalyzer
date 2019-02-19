@@ -242,7 +242,12 @@ namespace DataAnalyzer
             {
                 outputArray[i] = new int[combFilter + 1];
             }
-
+            
+            if (breakhere > innerLoopArray.Length)
+            {
+                breakhere = innerLoopArray.Length;
+            }
+            
             for (int i = 0; i < outerLoopArray.Length; i++)
             {
                 for (int j = 0; j < breakhere; j++)
