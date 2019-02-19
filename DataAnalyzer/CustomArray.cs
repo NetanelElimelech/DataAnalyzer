@@ -251,7 +251,6 @@ namespace DataAnalyzer
             for (int i = 0; i < outerLoopArray.Length; i++)
             {
                 for (int j = 0; j < breakhere; j++)
-                //for (int j = 0; j < innerLoopArray.Length; j++)
                 {
                     int test = 0;
 
