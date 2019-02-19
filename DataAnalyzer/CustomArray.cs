@@ -130,6 +130,20 @@ namespace DataAnalyzer
             return outputArray;
         }
 
+        public static int[][] RemoveFirstAndLastElementsFromArray(int[][] inputArray)
+        {
+            int[][] outputArray = new int[inputArray.Length][];
+            for (int i = 0; i < inputArray.Length; i++)
+            {
+                outputArray[i] = new int[6];
+                for (int j = 0; j < inputArray[i].Length - 2; j++)
+                {
+                    outputArray[i][j] = inputArray[i][j + 1];
+                }
+            }
+            return outputArray;
+        }
+
         public static int GetArrayLength<T>(IEnumerable<T> collection)
         {
             int size = 0;

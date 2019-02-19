@@ -312,7 +312,7 @@ namespace DataAnalyzer
             return combFilter;
         }
 
-        int HowManyDrawsConsider(int maxDrawsToConsider)
+        int HowManyDrawsConsider(int[][] drawsArray)
         {
             int howManyDrawsConsider = 0;
 
@@ -325,7 +325,8 @@ namespace DataAnalyzer
 
             else
             {
-                howManyDrawsConsider = maxDrawsToConsider;
+                howManyDrawsConsider = drawsArray.Length;
+                HowManyDrawsTextBox.Text = drawsArray.Length.ToString();
             }
 
             return howManyDrawsConsider;
@@ -357,25 +358,10 @@ namespace DataAnalyzer
 
             // Create temp array of draws
             int[][] tempControlDrawsArray = CustomArray.CreateIntArrayFromString(fileContent);
-            int[][] controlDrawsArray = RemoveFirstAndLastElementsFromArray(tempControlDrawsArray);
+            int[][] controlDrawsArray = CustomArray.RemoveFirstAndLastElementsFromArray(tempControlDrawsArray);
 
-            int[][] RemoveFirstAndLastElementsFromArray(int[][] inputArray)
-            {
-                int[][] outputArray = new int[inputArray.Length][];
-                for (int i = 0; i < inputArray.Length; i++)
-                {
-                    outputArray[i] = new int[6];
-                    for (int j = 0; j < inputArray[i].Length - 2; j++)
-                    {
-                        outputArray[i][j] = inputArray[i][j + 1];
-                    }
-                }
-                return outputArray;
-            }
-            //// Create final array of draws
-            //int[][] controlDrawsArray = CustomArray.CreateIntArrayFromString(fileContent); //2 5 8 9 10 11 15 16 22 28 30 32
-
-            int howManyDrawsConsider = HowManyDrawsConsider(controlDrawsArray.Length);
+            // Create final array of draws
+            int howManyDrawsConsider = HowManyDrawsConsider(controlDrawsArray);
 
             int[][] tempControlArray = CustomArray.CompareArrays(CustomArray.EPurpose.control, tempControlArrayInt, controlDrawsArray, tempControlArrayInt.Length, howManyDrawsConsider, combFilter);
             //Filter array
@@ -410,45 +396,20 @@ namespace DataAnalyzer
                     combination += $"{finalCombinationsArrayFiltered[i][j].ToString()} ";
                 }
 
-                //For: 2 5 8 11 14 18 20 24 26 29 30 36
-                //if (
-                //   !(combination.Contains("35") && combination.Contains("36"))
-                ////&& !(combination.Contains("2") && combination.Contains("29"))
-                //&& !(combination.Contains("2") && combination.Contains("30"))
-                ////&& !(combination.Contains("29") && combination.Contains("30"))
-                ////&& !(combination.Contains("11") && combination.Contains("19"))
-                ////&& !(combination.Contains("14") && combination.Contains("15"))
-                ////&& !(combination.Contains("15") && combination.Contains("16"))
-                ////&& !(combination.Contains("18") && combination.Contains("19"))
-                ////&& !(combination.Contains("29") && combination.Contains("30"))
-                ////&& !(combination.Contains("29") && combination.Contains("32"))
-                ////&& !(combination.Contains("30") && combination.Contains("32"))
-                //&& !(combination.Contains("11") && combination.Contains("18") && combination.Contains("35"))
-                //&& !(combination.Contains("11") && combination.Contains("26") && combination.Contains("36"))
-                //&& !(combination.Contains("8") && combination.Contains("14") && combination.Contains("18"))
-                //&& !(combination.Contains("8") && combination.Contains("15") && combination.Contains("20"))
-                //&& !(combination.Contains("5") && combination.Contains("8") && combination.Contains("14"))
-                ////&& !(combination.Contains("2") && combination.Contains("23") && combination.Contains("29"))
-                ////&& !(combination.Contains("2") && combination.Contains("23") && combination.Contains("30"))
-                ////&& !(combination.Contains("2") && combination.Contains("23") && combination.Contains("32"))
-                ////&& !(combination.Contains("16") && combination.Contains("29") && combination.Contains("30"))
-                ////&& !(combination.Contains("16") && combination.Contains("29") && combination.Contains("32"))
-                ////&& !(combination.Contains("8") && combination.Contains("15") && combination.Contains("25"))
-                ////&& !(combination.Contains("5") && combination.Contains("15") && combination.Contains("25"))
-                ////&& !(combination.Contains("5") && combination.Contains("8") && combination.Contains("15"))
-                ////&& !(combination.Contains("5") && combination.Contains("8") && combination.Contains("25"))
-                ////&& !(combination.Contains("2") && combination.Contains("5") && combination.Contains("8"))
-                ////&& !(combination.Contains("2 19"))
-                ////&& !(combination.Contains("2 21"))
-                ////&& !(combination.Contains("5 23"))
-                ////&& !(combination.Contains("5 25"))
-                //&& !(combination.LastIndexOf("20") == 12)
-                //&& !(combination.LastIndexOf("20") == 13)
-                //&& !(combination.LastIndexOf("20") == 14)
-                //)
-                //{
-                outputTextBox.AppendText($"{combination}\n");
-                //}
+                //For: 1 2 5 8 12 16 18 23 25 26 28 29 30 31 33
+                if (!(combination.Contains("1") && combination.Contains("2"))
+                && !(combination.Contains("18") && combination.Contains("19"))
+                && !(combination.Contains("22") && combination.Contains("23"))
+                && !(combination.Contains("28") && combination.Contains("29"))
+                && !(combination.Contains("29") && combination.Contains("30"))
+                
+                //&& !(combination.LastIndexOf("18") == 12)
+                //&& !(combination.LastIndexOf("18") == 13)
+                //&& !(combination.LastIndexOf("18") == 14)
+                )
+                {
+                    outputTextBox.AppendText($"{combination}\n");
+                }
             }
         }
 
@@ -478,7 +439,7 @@ namespace DataAnalyzer
             // Create final array of five
             int[][] controlDrawsArray = CustomArray.CreateIntArrayFromString(fileContent);
 
-            int howManyDrawsConsider = HowManyDrawsConsider(controlDrawsArray.Length);
+            int howManyDrawsConsider = HowManyDrawsConsider(controlDrawsArray);
             //Compare
             int[][] tempControlArray = CustomArray.CompareArrays(CustomArray.EPurpose.statistics, tempControlArrayInt, controlDrawsArray, tempControlArrayInt.Length, howManyDrawsConsider, combFilter);
 

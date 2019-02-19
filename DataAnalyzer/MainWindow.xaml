@@ -36,7 +36,7 @@
         <Label Content="Lower steps limit" HorizontalAlignment="Left" Margin="602,225,0,0" VerticalAlignment="Top" Width="130" FontSize="15"/>
         <TextBox x:Name="upperStepsLimitTextBox" HorizontalAlignment="Left" Height="30" Margin="558,265,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" FontSize="16" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         <Label Content="Upper steps limit" HorizontalAlignment="Left" Margin="602,265,0,0" VerticalAlignment="Top" Width="130" FontSize="15"/>
-        <Label Content="Check single sequence" HorizontalAlignment="Center" Margin="138,546,886,145" VerticalAlignment="Center" Width="170" FontSize="15" HorizontalContentAlignment="Center" Height="30"/>
+        <Label Content="Check single sequence" HorizontalAlignment="Center" Margin="126,546,898,145" VerticalAlignment="Center" Width="170" FontSize="15" HorizontalContentAlignment="Center" Height="30"/>
         <TextBox x:Name="num1TextBox" HorizontalAlignment="Left" Height="30" Margin="93,585,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         <TextBox x:Name="num2TextBox" HorizontalAlignment="Left" Height="30" Margin="133,585,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         <TextBox x:Name="num3TextBox" HorizontalAlignment="Left" Height="30" Margin="173,585,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
@@ -62,7 +62,7 @@
         <Label Content="Filter" HorizontalAlignment="Left" Margin="743,624,0,72" VerticalAlignment="Center" Width="46" HorizontalContentAlignment="Left" Height="25" RenderTransformOrigin="0.587,0.8"/>
         <Button x:Name="SpecifyNumbersToFilter" Style="{StaticResource BTNCORNER}" Content="Numbers&#xD;&#xA;to filter" HorizontalAlignment="Left" Margin="791,630,0,0" VerticalAlignment="Top" Width="80" Height="40" FontSize="11" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal"/>
         <CheckBox x:Name="EvensOddsCheckBox" Content="Remove evens-only&#xA;&amp; odds-only combinations" HorizontalAlignment="Left" Margin="569,639,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="HowManyDrawsTextBox" Height="24" TextWrapping="Wrap" Width="120" HorizontalAlignment="Left" Margin="569,582,0,0" VerticalAlignment="Top" Text="all"/>
-        <Label Content="How many draws consider" HorizontalAlignment="Left" Margin="569,556,0,0" VerticalAlignment="Top" Width="198" FontSize="12"/>
+        <TextBox x:Name="HowManyDrawsTextBox" Height="24" TextWrapping="Wrap" Width="50" HorizontalAlignment="Left" Margin="569,582,0,0" VerticalAlignment="Top" Text="ALL" VerticalContentAlignment="Center" />
+        <Label Content="How many draws consider" HorizontalAlignment="Left" Margin="564,556,0,0" VerticalAlignment="Top" Width="198" FontSize="12"/>
     </Grid>
 </Window>
