@@ -243,6 +243,7 @@ namespace DataAnalyzer
                 outputArray[i] = new int[combFilter + 1];
             }
 
+            //Validation
             if (breakhere > innerLoopArray.Length)
             {
                 breakhere = innerLoopArray.Length;
