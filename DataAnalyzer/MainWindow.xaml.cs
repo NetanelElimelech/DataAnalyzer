@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using static System.Windows.Visibility;
 
 namespace DataAnalyzer
@@ -31,19 +32,18 @@ namespace DataAnalyzer
             FetchFileFromUrl();
         }
 
-        private string FetchFileFromUrl()
+        private string FetchFileFromUrl()   
         {
             string fileContent = null;
             try
             {
-                var webRequest = WebRequest.Create(@"https://raw.githubusercontent.com/NetanelElimelech/_DataAnalyzer---OOP/master/allDraws.txt");
+                var webRequest = WebRequest.Create(@"https://raw.githubusercontent.com/NetanelElimelech/DataAnalyzer/master/allDraws.txt");
 
                 using (var response = webRequest.GetResponse())
                 using (var content = response.GetResponseStream())
                 using (var reader = new StreamReader(content))
                 {
                     fileContent = reader.ReadToEnd();
-                    inputTextBox.AppendText(fileContent);
                     reader.Close();
                 }
             }
@@ -77,7 +77,6 @@ namespace DataAnalyzer
             inputTextBox.Clear();
             outputTextBox.Clear();
             inputTextBox.Text = FetchFileFromUrl();
-            //inputTextBox.Text = GetFileContentAsString();
         }
 
         private void LoadFileButton_Click(object sender, RoutedEventArgs e)
@@ -89,7 +88,6 @@ namespace DataAnalyzer
         {
             dataGridView.Visibility = Hidden;
             outputTextBox.Visibility = Visible;
-            inputTextBox.Clear();
             outputTextBox.Clear();
         }
 
@@ -97,7 +95,6 @@ namespace DataAnalyzer
         {
             outputTextBox.Visibility = Hidden;
             dataGridView.Visibility = Visible;
-            inputTextBox.Clear();
             outputTextBox.Clear();
         }
 
@@ -197,7 +194,7 @@ namespace DataAnalyzer
             }
         }
 
-        private void CheckSequenceButton_Click(object sender, RoutedEventArgs e)
+        private void CheckCombinationButton_Click(object sender, RoutedEventArgs e)
         {
             DisplayFileContent();
             string[] drawsArray = CustomArray.SeparateToLines(GetFileContentAsString());
@@ -252,7 +249,7 @@ namespace DataAnalyzer
                     if (sequenceAlreadyWon)
                     {
                         const string message = "This sequence of numbers already won";
-                        const string caption = "Sequence already won in the past";
+                        const string caption = "Combination already won in the past";
                         var result = MessageBox.Show(message, caption, MessageBoxButton.OK);
                         break;
                     }
@@ -357,8 +354,8 @@ namespace DataAnalyzer
             int[][] tempControlArrayInt = CustomArray.CreateCombinationsArray(combinationsShort, combFilter);
 
             // Create temp array of draws
-            int[][] tempControlDrawsArray = CustomArray.CreateIntArrayFromString(fileContent);
-            int[][] controlDrawsArray = CustomArray.RemoveFirstAndLastElementsFromArray(tempControlDrawsArray);
+            //int[][] tempControlDrawsArray = CustomArray.CreateIntArrayFromString(fileContent);
+            int[][] controlDrawsArray = CustomArray.CropArray(CustomArray.CreateIntArrayFromString(fileContent));
 
             // Create final array of draws
             int howManyDrawsConsider = HowManyDrawsConsider(controlDrawsArray);
@@ -425,7 +422,7 @@ namespace DataAnalyzer
 
             int combFilter = GetCombFilterValue();
 
-            string fileContent = GetFileContentAsString();
+            string fileContent = FetchFileFromUrl();
             inputTextBox.Text = fileContent;
 
             int[] chosenNumbers = CustomArray.ParseStringArray(Regex.Split(chosenNumbersTextBox.Text, @"(?=\s)"));
@@ -437,7 +434,7 @@ namespace DataAnalyzer
             int[][] tempControlArrayInt = CustomArray.CreateCombinationsArray(combinationsFive, combFilter);
 
             // Create final array of five
-            int[][] controlDrawsArray = CustomArray.CreateIntArrayFromString(fileContent);
+            int[][] controlDrawsArray = CustomArray.CropArray(CustomArray.CreateIntArrayFromString(fileContent));
 
             int howManyDrawsConsider = HowManyDrawsConsider(controlDrawsArray);
             //Compare
@@ -451,6 +448,27 @@ namespace DataAnalyzer
 
             //Display
             DataView view = new DataView(Tables.PopulateDataTable(partialCombArray, Tables.ETableType.partial, new string[] { "Combination", "Count" }));
+            view.Sort = "Combination ASC";
+            dataGridView.ItemsSource = view;
+        }
+
+        private void ClearInputTxtBoxButton_Click(object sender, RoutedEventArgs e)
+        {
+            inputTextBox.Clear();
+        }
+
+        private void CheckCombinationsButton_Click(object sender, RoutedEventArgs e)
+        {
+            PrepareGUIforTableView();
+
+            string fileContent = FetchFileFromUrl();
+            int[][] intArrayFromFile = CustomArray.CreateIntArrayFromString(fileContent);
+            fileContent = inputTextBox.Text.Replace(" ", "\t");
+            int[][] combinationsToCheckArray = CustomArray.CreateIntArrayFromString(fileContent);
+            int[][] arrayToDisplay = CustomArray.CompareArrays(CustomArray.EPurpose.statistics, combinationsToCheckArray, intArrayFromFile, combinationsToCheckArray.Length, intArrayFromFile.Length, 4);
+            int[][] arrayFiltered = CustomArray.ReduceArrayByPushingOutNulls(arrayToDisplay);
+            string[][] finalStringArrayToDisplay = CustomArray.CreatePartialCombArray(arrayFiltered);
+            DataView view = new DataView(Tables.PopulateDataTable(finalStringArrayToDisplay, Tables.ETableType.partial, new string[] { "Combination", "Count" }));
             view.Sort = "Combination ASC";
             dataGridView.ItemsSource = view;
         }

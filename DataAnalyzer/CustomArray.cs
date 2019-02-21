@@ -27,9 +27,9 @@ namespace DataAnalyzer
             return intArray;
         }
 
-        public static string[] SeparateToLines(string initStringFromFile)
+        public static string[] SeparateToLines(string initialString)
         {
-            return Regex.Split(initStringFromFile, SEPARATE_TO_LINES);
+            return Regex.Split(initialString, SEPARATE_TO_LINES);
         }
 
         public static int[][] SeparateToNumbers(string[] inputArray)
@@ -130,7 +130,7 @@ namespace DataAnalyzer
             return outputArray;
         }
 
-        public static int[][] RemoveFirstAndLastElementsFromArray(int[][] inputArray)
+        public static int[][] CropArray(int[][] inputArray)
         {
             int[][] outputArray = new int[inputArray.Length][];
             for (int i = 0; i < inputArray.Length; i++)
@@ -265,7 +265,6 @@ namespace DataAnalyzer
             for (int i = 0; i < outerLoopArray.Length; i++)
             {
                 for (int j = 0; j < breakhere; j++)
-                //for (int j = 0; j < innerLoopArray.Length; j++)
                 {
                     int test = 0;
 
@@ -285,7 +284,7 @@ namespace DataAnalyzer
 
                                 else if (purpose == EPurpose.statistics)
                                 {
-                                    for (int k = 0; k < outerLoopArray[i].Length; k++)
+                                    for (int k = 0; k < combFilter; k++)
                                     {
                                         outputArray[i][k] = outerLoopArray[i][k];
                                     }
