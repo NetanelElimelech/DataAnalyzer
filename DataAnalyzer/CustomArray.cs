@@ -363,6 +363,49 @@ namespace DataAnalyzer
 
             return outputArray;
         }
+
+        internal int[][] BuildConsequentComb(int maxNumber, int innerArraySize)
+        {
+            int[][] numbersArray = new int[maxNumber - innerArraySize + 1][];
+
+            int number = 1;
+
+            for (int i = 0; i < numbersArray.Length; i++)
+            {
+                numbersArray[i] = new int[innerArraySize];
+                int temp = number;
+                for (int j = 0; j < innerArraySize; j++)
+                {
+                    numbersArray[i][j] = temp;
+                    temp++;
+                }
+                number++;
+            }
+            return numbersArray;
+        }
+
+        internal string GetArrayAsString(int[][] inputArray, string separator)
+        {
+            string arrayAsString = "";
+
+            for (int i = 0; i < inputArray.Length; i++)
+            {
+                for (int j = 0; j < inputArray[i].Length; j++)
+                {
+                    if (j == inputArray[i].Length - 1)
+                    {
+                    arrayAsString += $"{separator}{inputArray[i][j].ToString()}";
+                    }
+                    else
+                    {
+                        arrayAsString += $"{inputArray[i][j].ToString()} ";
+                    }
+                }
+                arrayAsString += "\n";
+            }
+
+            return arrayAsString;
+        }
         //TODO: Push out odds-only and evens-only combinations
         //TODO: In Version 2 the data should be DB-based
         //TODO: Working with one single file for all

@@ -282,31 +282,31 @@ namespace DataAnalyzer
             }
         }
 
-        private int GetCombFilterValue()
+        private int GetComboBoxValue(int value)
         {
-            int combFilter;
-            switch (FilterComboBox.SelectedIndex)
+            int comboBoxValue;
+            switch (value)
             {
                 case 0:
-                    combFilter = 2;
+                    comboBoxValue = 2;
                     break;
                 case 1:
-                    combFilter = 3;
+                    comboBoxValue = 3;
                     break;
                 case 2:
-                    combFilter = 4;
+                    comboBoxValue = 4;
                     break;
                 case 3:
-                    combFilter = 5;
+                    comboBoxValue = 5;
                     break;
                 case 4:
-                    combFilter = 6;
+                    comboBoxValue = 6;
                     break;
                 default:
-                    combFilter = 4;
+                    comboBoxValue = 4;
                     break;
             }
-            return combFilter;
+            return comboBoxValue;
         }
 
         int HowManyDrawsConsider(int[][] drawsArray)
@@ -333,7 +333,7 @@ namespace DataAnalyzer
         {
             PrepareGUIforTextBoxes();
 
-            int combFilter = GetCombFilterValue();
+            int combFilter = GetComboBoxValue(FilterComboBox.SelectedIndex);
 
             //string fileContent = GetFileContentAsString();
             string fileContent = FetchFileFromUrl();
@@ -393,12 +393,16 @@ namespace DataAnalyzer
                     combination += $"{finalCombinationsArrayFiltered[i][j].ToString()} ";
                 }
 
-                //For: 1 2 5 8 12 16 18 23 25 26 28 29 30 31 33
-                if (!(combination.Contains("1") && combination.Contains("2"))
-                && !(combination.Contains("18") && combination.Contains("19"))
-                && !(combination.Contains("22") && combination.Contains("23"))
-                && !(combination.Contains("28") && combination.Contains("29"))
-                && !(combination.Contains("29") && combination.Contains("30"))
+                //For: 2 3 9 13 16 21 24 25 27 28 29 30 31 34
+                if (!(combination.Contains("3") && combination.Contains("9"))
+                && !(combination.Contains("2 3") && combination.Contains("24 25"))
+                && !(combination.Contains("2 3") && combination.Contains("27 28"))
+                && !(combination.Contains("2 3") && combination.Contains("28 29"))
+                && !(combination.Contains("2 3") && combination.Contains("29 30"))
+                && !(combination.Contains("27") && combination.Contains("28") && combination.Contains("29"))
+                && !(combination.Contains("28") && combination.Contains("29") && combination.Contains("30"))
+                && !(combination.Contains("3") && combination.Contains("24") && combination.Contains("25"))
+                && !(combination.Contains("9") && combination.Contains("24") && combination.Contains("25"))
                 
                 //&& !(combination.LastIndexOf("18") == 12)
                 //&& !(combination.LastIndexOf("18") == 13)
@@ -420,7 +424,7 @@ namespace DataAnalyzer
         {
             PrepareGUIforTableView();
 
-            int combFilter = GetCombFilterValue();
+            int combFilter = GetComboBoxValue(FilterComboBox.SelectedIndex);
 
             string fileContent = FetchFileFromUrl();
             inputTextBox.Text = fileContent;
@@ -452,25 +456,15 @@ namespace DataAnalyzer
             dataGridView.ItemsSource = view;
         }
 
-        private void ClearInputTxtBoxButton_Click(object sender, RoutedEventArgs e)
+        private void CheckConsequentCombinationsButton_Click(object sender, RoutedEventArgs e)
         {
-            inputTextBox.Clear();
-        }
-
-        private void CheckCombinationsButton_Click(object sender, RoutedEventArgs e)
-        {
-            PrepareGUIforTableView();
+            PrepareGUIforTextBoxes();
 
             string fileContent = FetchFileFromUrl();
-            int[][] intArrayFromFile = CustomArray.CreateIntArrayFromString(fileContent);
-            fileContent = inputTextBox.Text.Replace(" ", "\t");
-            int[][] combinationsToCheckArray = CustomArray.CreateIntArrayFromString(fileContent);
-            int[][] arrayToDisplay = CustomArray.CompareArrays(CustomArray.EPurpose.statistics, combinationsToCheckArray, intArrayFromFile, combinationsToCheckArray.Length, intArrayFromFile.Length, 4);
-            int[][] arrayFiltered = CustomArray.ReduceArrayByPushingOutNulls(arrayToDisplay);
-            string[][] finalStringArrayToDisplay = CustomArray.CreatePartialCombArray(arrayFiltered);
-            DataView view = new DataView(Tables.PopulateDataTable(finalStringArrayToDisplay, Tables.ETableType.partial, new string[] { "Combination", "Count" }));
-            view.Sort = "Combination ASC";
-            dataGridView.ItemsSource = view;
+            CombCombiner combCombiner = new CombCombiner(GetMaxNumber(), GetComboBoxValue(ConsequentComboBox.SelectedIndex), fileContent);
+
+            inputTextBox.Text = combCombiner.GetCombinationsToBeCheckedAsString();
+            outputTextBox.Text = combCombiner.GetComparedCombinationsAsString();
         }
     }
 }
