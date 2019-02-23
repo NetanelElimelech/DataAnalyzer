@@ -18,7 +18,7 @@ namespace DataAnalyzer
             {
                 for (int j = 0; j < inputArray.Length; j++) //Goes through all the sequences
                 {
-                    for (int k = 1; k < inputArray[j].Length - 1; k++) //Goes through all the positions (numbers) in the sequence
+                    for (int k = 0; k < inputArray[j].Length; k++) //Goes through all the positions (numbers) in the sequence
                     {
                         if (inputArray[j][k] == i + 1)
                         {
