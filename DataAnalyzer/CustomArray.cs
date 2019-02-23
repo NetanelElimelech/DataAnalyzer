@@ -39,8 +39,11 @@ namespace DataAnalyzer
             for (int i = 0; i < inputArray.Length; i++)
             {
                 separatedNumbersArray = Regex.Split(inputArray[i], SEPARATE_TO_NUMBERS);
-
-                outputArray[i] = ParseStringArray(separatedNumbersArray);
+                int[] tempArray = ParseStringArray(separatedNumbersArray);
+                if (tempArray[0] != 0)
+                {
+                    outputArray[i] = tempArray;
+                }
             }
             return outputArray;
         }
