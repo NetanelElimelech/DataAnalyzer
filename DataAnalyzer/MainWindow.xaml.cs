@@ -393,17 +393,33 @@ namespace DataAnalyzer
                     combination += $"{finalCombinationsArrayFiltered[i][j].ToString()} ";
                 }
 
-                //For: 2 3 9 13 16 21 24 25 27 28 29 30 31 34
-                if (!(combination.Contains("3") && combination.Contains("9"))
-                && !(combination.Contains("2 3") && combination.Contains("24 25"))
-                && !(combination.Contains("2 3") && combination.Contains("27 28"))
-                && !(combination.Contains("2 3") && combination.Contains("28 29"))
-                && !(combination.Contains("2 3") && combination.Contains("29 30"))
-                && !(combination.Contains("27") && combination.Contains("28") && combination.Contains("29"))
-                && !(combination.Contains("28") && combination.Contains("29") && combination.Contains("30"))
-                && !(combination.Contains("3") && combination.Contains("24") && combination.Contains("25"))
-                && !(combination.Contains("9") && combination.Contains("24") && combination.Contains("25"))
-                
+                //For: 2 5 8 11 15 16 19 25 29 31 35 37
+                //And: 11 15 16 19 20 25 26 29 30 31 33
+                //And: 3 4 6 14 17 22 23 27 34 36
+                //And: 5 8 11 12 16 19 26 29 30 31 35
+                if (combination.Contains("29")
+                    //&& combination.Contains("12")
+                    //&& !combination.Contains("5 8")
+                    //&& !combination.Contains("8 25")
+                    && !combination.Contains("8 29")
+                    && !combination.Contains("8 31")
+                    && !combination.Contains("8 35")
+                    && !combination.Contains("8 37")
+                    //&& !combination.Contains("5 25")
+                    //&& !combination.Contains("5 29")
+                    && !combination.Contains("5 31")
+                    && !combination.Contains("5 35")
+                    && !combination.Contains("5 37")
+                    && !(combination.Contains("3 4") && !combination.Contains("22 23"))
+                && !(combination.Contains("12") && combination.Contains("30"))
+                //&& !(combination.Contains("2 3") && combination.Contains("27 28"))
+                //&& !(combination.Contains("2 3") && combination.Contains("28 29"))
+                //&& !(combination.Contains("2 3") && combination.Contains("29 30"))
+                && !(combination.Contains("29") && combination.Contains("30") && combination.Contains("31"))
+                //&& !(combination.Contains("28") && combination.Contains("29") && combination.Contains("30"))
+                //&& !(combination.Contains("3") && combination.Contains("24") && combination.Contains("25"))
+                //&& !(combination.Contains("9") && combination.Contains("24") && combination.Contains("25"))
+
                 //&& !(combination.LastIndexOf("18") == 12)
                 //&& !(combination.LastIndexOf("18") == 13)
                 //&& !(combination.LastIndexOf("18") == 14)

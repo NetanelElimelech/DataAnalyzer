@@ -29,6 +29,12 @@ namespace DataAnalyzer
 
         public static string[] SeparateToLines(string initialString)
         {
+            //string[] outputArray = Regex.Split(initialString, SEPARATE_TO_LINES);
+            //foreach (var item in outputArray)
+            //{
+            //    item.Replace(@"(?=\n)", "");
+            //}
+            //return outputArray;
             return Regex.Split(initialString, SEPARATE_TO_LINES);
         }
 
