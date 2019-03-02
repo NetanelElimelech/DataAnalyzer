@@ -45,14 +45,27 @@ namespace DataAnalyzer
             for (int i = 0; i < inputArray.Length; i++)
             {
                 separatedNumbersArray = Regex.Split(inputArray[i], SEPARATE_TO_NUMBERS);
-                int[] tempArray = ParseStringArray(separatedNumbersArray);
-                if (tempArray[0] != 0)
-                {
-                    outputArray[i] = tempArray;
-                }
+
+                outputArray[i] = ParseStringArray(separatedNumbersArray);
             }
             return outputArray;
         }
+
+        //public static int[][] SeparateToNumbers(string[] inputArray)
+        //{
+        //    int[][] outputArray = new int[inputArray.Length][];
+
+        //    for (int i = 0; i < inputArray.Length; i++)
+        //    {
+        //        separatedNumbersArray = Regex.Split(inputArray[i], SEPARATE_TO_NUMBERS);
+        //        int[] tempArray = ParseStringArray(separatedNumbersArray);
+        //        if (tempArray[0] != 0)
+        //        {
+        //            outputArray[i] = tempArray;
+        //        }
+        //    }
+        //    return outputArray;
+        //}
 
     public static int[] ParseStringArray(string[] inputArray)
         {
@@ -64,7 +77,10 @@ namespace DataAnalyzer
 
                 if (success)
                 {
-                    outputArray[i] = int.Parse(inputArray[i]);
+                    if (parsedNumber != 0)
+                    {
+                        outputArray[i] = int.Parse(inputArray[i]);
+                    }
                 }
 
                 else
@@ -87,12 +103,33 @@ namespace DataAnalyzer
                     {
                         if (inputArray[j][k] == i + 1)
                         {
-                            outputArray[i] += "\t" + inputArray[j][0].ToString();
+                            //outputArray[i] += "\t" + inputArray[j][0].ToString();
+                            outputArray[i] += inputArray[j][0].ToString() + "\t";
                         }
                     }
                 }
             }
             return outputArray;
+        }
+
+        protected static List<int>[] CreateInitialDrawsList(int[][] inputArray, int maxNumber)
+        {
+            List<int>[] initialDrawsListArray = new List<int>[maxNumber];
+
+            for (int i = 0; i < maxNumber; i++) //Check every number from 1 to maximal number
+            {
+                for (int j = 0; j < inputArray.Length; j++) //Go through all the sequences
+                {
+                    for (int k = 0; k < inputArray[j].Length - 1; k++) //Go through all the positions (numbers) in the sequence
+                    {
+                        if (inputArray[j][k] == i + 1)
+                        {
+                            initialDrawsListArray[i].Add(inputArray[j][0]);
+                        }
+                    }
+                }
+            }
+            return initialDrawsListArray;
         }
 
         protected string[] CreateDrawsNumberWonArray(int[][] inputArray, int maxNumber)
