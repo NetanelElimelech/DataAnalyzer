@@ -15,9 +15,9 @@ namespace DataAnalyzer
         public AvgSpanCombiner(string fileContent, int maxNumber, string lowerStepsLimitString, string upperStepsLimitString)
         {
             int[][] intArrayFromFile = CreateIntArrayFromString(fileContent);
-            //string[] drawsStringArray = CreateInitialDrawsArray(intArrayFromFile, maxNumber);
-            List<int>[] drawsStringArray = CreateInitialDrawsList(intArrayFromFile, maxNumber);
-            //drawsIntArray = SeparateToNumbers(drawsStringArray);
+            string[] drawsStringArray = CreateInitialDrawsArray(intArrayFromFile, maxNumber);
+            //List<int>[] drawsStringArray = CreateInitialDrawsList(intArrayFromFile, maxNumber);
+            drawsIntArray = SeparateToNumbers(drawsStringArray);
 
             GetLowerStepsLimit(lowerStepsLimitString);
             GetUpperStepsLimit(upperStepsLimitString);

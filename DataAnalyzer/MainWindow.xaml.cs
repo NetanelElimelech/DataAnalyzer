@@ -130,7 +130,7 @@ namespace DataAnalyzer
             for (int i = 0; i < drawsArray.Length; i++)
             {
                 avg = 0;
-                jumpsArray[i] = new int[drawsArray[i].Length - 1];
+                jumpsArray[i] = new int[drawsArray[i].Length - 2];
                 outputTextBox.AppendText($"{i + 1} appears every:\n");
 
                 for (int j = 0; j < jumpsArray[i].Length; j++)
