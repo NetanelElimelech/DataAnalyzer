@@ -10,17 +10,19 @@ namespace DataAnalyzer
     {
         int lowerStepsLimit;
         int upperStepsLimit;
-        readonly int[][] drawsIntArray;
+        int[][] drawsIntArray;
+        int[][] jumpsArray;
 
         public AvgSpanCombiner(string fileContent, int maxNumber, string lowerStepsLimitString, string upperStepsLimitString)
         {
             int[][] intArrayFromFile = CreateIntArrayFromString(fileContent);
             string[] drawsStringArray = CreateInitialDrawsArray(intArrayFromFile, maxNumber);
-            //List<int>[] drawsStringArray = CreateInitialDrawsList(intArrayFromFile, maxNumber);
-            drawsIntArray = SeparateToNumbers(drawsStringArray);
+            List<int>[] drawsListArray = CreateInitialDrawsList(intArrayFromFile, maxNumber);
+            //drawsIntArray = SeparateToNumbers(drawsStringArray);
+            jumpsArray = CalculateJumps(maxNumber, drawsListArray, GetLowerStepsLimit(lowerStepsLimitString), GetUpperStepsLimit(upperStepsLimitString));
 
-            GetLowerStepsLimit(lowerStepsLimitString);
-            GetUpperStepsLimit(upperStepsLimitString);
+            //GetLowerStepsLimit(lowerStepsLimitString);
+            //GetUpperStepsLimit(upperStepsLimitString);
         }
 
         public int GetLowerStepsLimit(string lowerStepsLimitString)
@@ -60,6 +62,32 @@ namespace DataAnalyzer
         public int[][] GetDrawsIntArray()
         {
             return drawsIntArray;
+        }
+
+        public int[][] GetJumpsArray()
+        {
+            return jumpsArray;
+        }
+
+        int[][] CalculateJumps(int maxNumber, List<int>[] drawsListArray, int lowerStepsLimit, int upperStepsLimit)
+        {
+            jumpsArray = new int[maxNumber][];
+            int jump = 0;
+
+            for (int i = 0; i < drawsListArray.Length; i++)
+            {
+                jumpsArray[i] = new int[drawsListArray[i].Count - 1];
+
+                for (int j = 0; j < jumpsArray[i].Length; j++)
+                {
+                    jump = drawsListArray[i][j] - drawsListArray[i][j + 1];
+                    if (jump >= lowerStepsLimit && jump <= upperStepsLimit)
+                    {
+                        jumpsArray[i][j] = jump;
+                    }
+                }
+            }
+            return jumpsArray;
         }
     }
 }

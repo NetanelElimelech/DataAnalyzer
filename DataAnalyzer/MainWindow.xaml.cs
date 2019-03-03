@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
+using System.Linq;
 using static System.Windows.Visibility;
 
 namespace DataAnalyzer
@@ -119,31 +119,20 @@ namespace DataAnalyzer
             string lowerStepsLimitString = lowerStepsLimitTextBox.Text;
             string upperStepsLimitString = upperStepsLimitTextBox.Text;
 
-            AvgSpanCombiner avgSpanCombiner = new AvgSpanCombiner(fileContent, maxNumber, lowerStepsLimitString, upperStepsLimitString);
+            int[][] jumpsArray = new AvgSpanCombiner(fileContent, maxNumber, lowerStepsLimitString, upperStepsLimitString).GetJumpsArray();
 
-            int[][] jumpsArray = new int[maxNumber][];
-            double avg = 0;
-            int jump = 0;
-
-            int[][] drawsArray = avgSpanCombiner.GetDrawsIntArray();
-
-            for (int i = 0; i < drawsArray.Length; i++)
+            for (int i = 0; i < jumpsArray.Length; i++)
             {
-                avg = 0;
-                jumpsArray[i] = new int[drawsArray[i].Length - 2];
                 outputTextBox.AppendText($"{i + 1} appears every:\n");
-
                 for (int j = 0; j < jumpsArray[i].Length; j++)
                 {
-                    jump = drawsArray[i][j] - drawsArray[i][j + 1];
-                    if (jump >= avgSpanCombiner.GetLowerStepsLimit() && jump <= avgSpanCombiner.GetUpperStepsLimit())
-                    {
-                        jumpsArray[i][j] = jump;
-                        avg = (avg + jumpsArray[i][j]);
-                        outputTextBox.AppendText($"{jumpsArray[i][j]} ");
-                    }
+                    outputTextBox.AppendText($"{jumpsArray[i][j]} ");
                 }
-                outputTextBox.AppendText($"\nAVG = {Math.Round(avg / (drawsArray[i].Length), 2)}\n\n");
+                outputTextBox.AppendText("\n");
+
+                IEnumerable<double> query = jumpsArray[i].Select(avg => jumpsArray[i].Average());
+
+                outputTextBox.AppendText($"AVG span = {Math.Round(query.First(), 2)}\n");
             }
         }
 

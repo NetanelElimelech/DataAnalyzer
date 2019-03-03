@@ -112,25 +112,29 @@ namespace DataAnalyzer
             return outputArray;
         }
 
-        //protected static List<int>[] CreateInitialDrawsList(int[][] inputArray, int maxNumber)
-        //{
-        //    List<int>[] initialDrawsListArray = new List<int>[maxNumber];
+        protected static List<int>[] CreateInitialDrawsList(int[][] inputArray, int maxNumber)
+        {
+            List<int>[] initialDrawsListArray = new List<int>[maxNumber];
+            for (int i = 0; i < maxNumber; i++)
+            {
+                initialDrawsListArray[i] = new List<int>();
+            }
 
-        //    for (int i = 0; i < maxNumber; i++) //Check every number from 1 to maximal number
-        //    {
-        //        for (int j = 0; j < inputArray.Length; j++) //Go through all the sequences
-        //        {
-        //            for (int k = 0; k < inputArray[j].Length - 1; k++) //Go through all the positions (numbers) in the sequence
-        //            {
-        //                if (inputArray[j][k] == i + 1)
-        //                {
-        //                    initialDrawsListArray[i].Add(inputArray[j][0]);
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return initialDrawsListArray;
-        //}
+            for (int i = 0; i < maxNumber; i++) //Check every number from 1 to maximal number
+            {
+                for (int j = 0; j < inputArray.Length; j++) //Go through all the sequences
+                {
+                    for (int k = 0; k < inputArray[j].Length - 1; k++) //Go through all the positions (numbers) in the sequence
+                    {
+                        if (inputArray[j][k] == i + 1)
+                        {
+                            initialDrawsListArray[i].Add(inputArray[j][0]);
+                        }
+                    }
+                }
+            }
+            return initialDrawsListArray;
+        }
 
         protected string[] CreateDrawsNumberWonArray(int[][] inputArray, int maxNumber)
         {
