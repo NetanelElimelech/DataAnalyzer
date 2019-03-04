@@ -18,11 +18,7 @@ namespace DataAnalyzer
             int[][] intArrayFromFile = CreateIntArrayFromString(fileContent);
             string[] drawsStringArray = CreateInitialDrawsArray(intArrayFromFile, maxNumber);
             List<int>[] drawsListArray = CreateInitialDrawsList(intArrayFromFile, maxNumber);
-            //drawsIntArray = SeparateToNumbers(drawsStringArray);
             jumpsArray = CalculateJumps(maxNumber, drawsListArray, GetLowerStepsLimit(lowerStepsLimitString), GetUpperStepsLimit(upperStepsLimitString));
-
-            //GetLowerStepsLimit(lowerStepsLimitString);
-            //GetUpperStepsLimit(upperStepsLimitString);
         }
 
         public int GetLowerStepsLimit(string lowerStepsLimitString)

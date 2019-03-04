@@ -103,7 +103,6 @@ namespace DataAnalyzer
                     {
                         if (inputArray[j][k] == i + 1)
                         {
-                            //outputArray[i] += "\t" + inputArray[j][0].ToString();
                             outputArray[i] += inputArray[j][0].ToString() + "\t";
                         }
                     }

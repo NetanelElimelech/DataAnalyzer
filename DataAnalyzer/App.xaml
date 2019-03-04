@@ -7,17 +7,18 @@
         <Style TargetType="Button" x:Key="BTNCORNER">
             <Setter Property="Background" Value="White" />
             <Setter Property="TextBlock.TextAlignment" Value="Center" />
-            <Setter Property="TextBlock.FontWeight" Value="Regular" />
-            <Setter Property="TextBlock.FontSize" Value="15" />
+            <Setter Property="TextBlock.FontWeight" Value="Normal"/>
+            <Setter Property="TextBlock.FontSize" Value="14" />
+            <Setter Property="TextBlock.Foreground" Value="White" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="border" CornerRadius="3,3,3,3" Background="#FF64C8AA" BorderBrush="#ccc" BorderThickness="0,0,0,0" >
+                        <Border x:Name="border" CornerRadius="2" Background="#AA089FF1" BorderBrush="#ccc" BorderThickness="0,0,0,0" >
                             <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                         </Border>
-                        <ControlTemplate.Triggers>
+                            <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" TargetName="border" Value="#BEE6BB"/>
+                                <Setter Property="Background" TargetName="border" Value="#55089FF1"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
                                 <Setter Property="BorderBrush" TargetName="border" Value="#2C628B"/>

@@ -211,9 +211,9 @@ namespace DataAnalyzer
 
                 if (!valueIsInteger || parsedNumber <= 0 || (parsedNumber > maxNumber && maxNumber != 0))
                 {
-                    const string message = "Some entries are invalid";
-                    const string caption = "Invalid number";
-                    var result = MessageBox.Show(message, caption, MessageBoxButton.OK);
+                    const string MESSAGE = "Some entries are invalid";
+                    const string CAPTION = "Invalid number";
+                    var result = MessageBox.Show(MESSAGE, CAPTION, MessageBoxButton.OK);
                     pair.Key.Focus();
                     break;
                 }
@@ -237,18 +237,18 @@ namespace DataAnalyzer
 
                     if (sequenceAlreadyWon)
                     {
-                        const string message = "This sequence of numbers already won";
-                        const string caption = "Combination already won in the past";
-                        var result = MessageBox.Show(message, caption, MessageBoxButton.OK);
+                        const string MESSAGE = "This sequence of numbers already won";
+                        const string CAPTION = "Combination already won in the past";
+                        var result = MessageBox.Show(MESSAGE, CAPTION, MessageBoxButton.OK);
                         break;
                     }
                 }
 
                 if (!sequenceAlreadyWon)
                 {
-                    const string messageNothingFound = "Nothing found";
-                    const string captionNothingFound = "Nothing found";
-                    var resultNothingFound = MessageBox.Show(messageNothingFound, captionNothingFound, MessageBoxButton.OK);
+                    const string MESSAGE = "Nothing found";
+                    const string CAPTION = "Nothing found";
+                    var resultNothingFound = MessageBox.Show(MESSAGE, CAPTION, MessageBoxButton.OK);
                 }
             }
         }
@@ -318,16 +318,8 @@ namespace DataAnalyzer
             return howManyDrawsConsider;
         }
 
-        private void CombineButton_Click(object sender, RoutedEventArgs e)
+        int[][] CreateCombinationsArrayToBeDisplayed(int combFilter, string fileContent)
         {
-            PrepareGUIforTextBoxes();
-
-            int combFilter = GetComboBoxValue(FilterComboBox.SelectedIndex);
-
-            //string fileContent = GetFileContentAsString();
-            string fileContent = FetchFileFromUrl();
-            inputTextBox.Text = fileContent;
-
             int[] chosenNumbers = CustomArray.ParseStringArray(Regex.Split(chosenNumbersTextBox.Text, @"(?=\s)"));
 
             // Combine numbers
@@ -343,7 +335,6 @@ namespace DataAnalyzer
             int[][] tempControlArrayInt = CustomArray.CreateCombinationsArray(combinationsShort, combFilter);
 
             // Create temp array of draws
-            //int[][] tempControlDrawsArray = CustomArray.CreateIntArrayFromString(fileContent);
             int[][] controlDrawsArray = CustomArray.CropArray(CustomArray.CreateIntArrayFromString(fileContent));
 
             // Create final array of draws
@@ -372,6 +363,19 @@ namespace DataAnalyzer
                 //Push out nulls
                 finalCombinationsArrayFiltered = CustomArray.ReduceArrayByPushingOutNulls(tempCombinationsArray);
             }
+
+            return finalCombinationsArrayFiltered;
+        }
+
+        private void CombineButton_Click(object sender, RoutedEventArgs e)
+        {
+            PrepareGUIforTextBoxes();
+
+            int combFilter = GetComboBoxValue(FilterComboBox.SelectedIndex);
+            string fileContent = FetchFileFromUrl();
+            inputTextBox.Text = fileContent;
+
+            int[][] finalCombinationsArrayFiltered = CreateCombinationsArrayToBeDisplayed(combFilter, fileContent);
 
             //Display
             for (int i = 0; i < finalCombinationsArrayFiltered.Length; i++)
@@ -459,6 +463,7 @@ namespace DataAnalyzer
                     outputTextBox.AppendText($"{combination}\n");
                 }
             }
+            CombinationsCount.Content = $"Count: {finalCombinationsArrayFiltered.Length}";
         }
 
         private void ClearCombinationsButton_Click(object sender, RoutedEventArgs e)
@@ -512,6 +517,12 @@ namespace DataAnalyzer
 
             inputTextBox.Text = combCombiner.GetCombinationsToBeCheckedAsString();
             outputTextBox.Text = combCombiner.GetComparedCombinationsAsString();
+        }
+
+        private void AdvancedCombinerButton_Click(object sender, RoutedEventArgs e)
+        {
+            AdvancedCombiner advancedCombiner = new AdvancedCombiner();
+            advancedCombiner.Show();
         }
     }
 }

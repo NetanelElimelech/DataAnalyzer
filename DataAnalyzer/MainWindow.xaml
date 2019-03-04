@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DataAnalyzer"
         mc:Ignorable="d"
-        Title="Data Analyzer - v. 1.5" Height="750" Width="1200" ResizeMode="NoResize">
+        Title="Data Analyzer - v. 1.6" Height="750" Width="1200" ResizeMode="NoResize">
 
 
     <Grid>
@@ -21,15 +21,15 @@
 
 
         </Menu>
-        <Button x:Name="LoadFileButton" Style="{StaticResource BTNCORNER}" Content="Preview draws" HorizontalAlignment="Left" Margin="437,60,0,0" VerticalAlignment="Top" Width="120" Height="40" FontSize="16" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal" Click="LoadFileButton_Click"/>
+        <Button x:Name="LoadFileButton" Style="{StaticResource BTNCORNER}" Content="PREVIEW" HorizontalAlignment="Left" Margin="437,60,0,0" VerticalAlignment="Top" Width="120" Height="40" BorderThickness="0" Click="LoadFileButton_Click"/>
         <TextBox x:Name="inputTextBox" HorizontalAlignment="Left" Height="400" Margin="42,60,0,0" TextWrapping="Wrap" AcceptsReturn="True" VerticalAlignment="Top" Width="370" BorderThickness="0" ClipToBounds="True" VerticalScrollBarVisibility="Auto"/>
         <TextBox x:Name="outputTextBox" HorizontalAlignment="Right" Height="450" Margin="0,55,42,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="370" BorderThickness="0" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
         <Label Content="File content" Style="{StaticResource RegularLabel}" HorizontalAlignment="Left" Margin="162,25,0,0" VerticalAlignment="Top" Width="110" FontSize="15" />
         <Label Content="Output" Style="{StaticResource RegularLabel}" HorizontalAlignment="Left" Margin="921,25,0,0" VerticalAlignment="Top" Width="110" FontSize="15" />
-        <Button x:Name="CalculateRateButton" Style="{StaticResource BTNCORNER}" Content="Rate" HorizontalAlignment="Left" Margin="437,119,0,0" VerticalAlignment="Top" Width="80" Height="40" FontSize="16" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal" Click="CalculateRateButton_Click"/>
-        <Button x:Name="ShowDrawsButton" Style="{StaticResource BTNCORNER}" Content="Draws" HorizontalAlignment="Left" Margin="437,180,0,0" VerticalAlignment="Top" Width="80" Height="40" FontSize="16" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal" Click="ShowDrawsButton_Click"/>
-        <Button x:Name="CalculateAvgSpanButton" Style="{StaticResource BTNCORNER}" Content="AVG app." HorizontalAlignment="Left" Margin="437,239,0,0" VerticalAlignment="Top" Width="80" Height="40" FontSize="16" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal" Click="CalculateAvgSpanButton_Click"/>
-        <Button x:Name="LastAppearanceButton" Style="{StaticResource BTNCORNER}" Content="Last app." HorizontalAlignment="Left" Margin="437,298,0,0" VerticalAlignment="Top" Width="80" Height="40" FontSize="16" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal" Click="LastAppearanceButton_Click"/>
+        <Button x:Name="CalculateRateButton" Style="{StaticResource BTNCORNER}" Content="RATE" HorizontalAlignment="Left" Margin="437,119,0,0" VerticalAlignment="Top" Width="80" Height="40" BorderThickness="0" Background="#FF64C8FF" Click="CalculateRateButton_Click"/>
+        <Button x:Name="ShowDrawsButton" Style="{StaticResource BTNCORNER}" Content="DRAWS" HorizontalAlignment="Left" Margin="437,180,0,0" VerticalAlignment="Top" Width="80" Height="40" BorderThickness="0" Background="#FF64C8FF" Click="ShowDrawsButton_Click"/>
+        <Button x:Name="CalculateAvgSpanButton" Style="{StaticResource BTNCORNER}" Content="AVG" HorizontalAlignment="Left" Margin="437,239,0,0" VerticalAlignment="Top" Width="80" Height="40" BorderThickness="0" Background="#FF64C8FF" Click="CalculateAvgSpanButton_Click"/>
+        <Button x:Name="LastAppearanceButton" Style="{StaticResource BTNCORNER}" Content="LAST" HorizontalAlignment="Left" Margin="437,298,0,0" VerticalAlignment="Top" Width="80" Height="40" BorderThickness="0" Background="#FF089FF1" Click="LastAppearanceButton_Click"/>
         <TextBox x:Name="maxNumberTextBox" HorizontalAlignment="Left" Height="30" Margin="558,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" FontSize="16" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Text="37"/>
         <Label Content="Max. number" HorizontalAlignment="Left" Margin="602,125,0,0" VerticalAlignment="Top" Width="110" FontSize="15"/>
         <TextBox x:Name="lowerStepsLimitTextBox" HorizontalAlignment="Left" Height="30" Margin="558,225,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" FontSize="16" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
@@ -43,14 +43,15 @@
         <TextBox x:Name="num4TextBox" HorizontalAlignment="Left" Height="30" Margin="213,625,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         <TextBox x:Name="num5TextBox" HorizontalAlignment="Left" Height="30" Margin="253,625,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
         <TextBox x:Name="num6TextBox" HorizontalAlignment="Left" Height="30" Margin="293,625,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" TextAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-        <Button x:Name="CheckCombinationButton" Style="{StaticResource BTNCORNER}" Content="Check" HorizontalAlignment="Left" Margin="103,670,0,0" VerticalAlignment="Top" Width="80" Height="30" FontSize="16" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal" Click="CheckCombinationButton_Click"/>
-        <Button x:Name="ClearButton" Style="{StaticResource BTNCORNER}" Content="Clear" HorizontalAlignment="Left" Margin="233,670,0,0" VerticalAlignment="Top" Width="80" Height="30" FontSize="16" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal" Click="ClearButton_Click"/>
+        <Button x:Name="CheckCombinationButton" Style="{StaticResource BTNCORNER}" Content="CLEAR" HorizontalAlignment="Left" Margin="103,670,0,0" VerticalAlignment="Top" Width="80" Height="30" Click="CheckCombinationButton_Click"/>
+        <Button x:Name="ClearButton" Style="{StaticResource BTNCORNER}" Content="CLEAR" HorizontalAlignment="Left" Margin="233,670,0,0" VerticalAlignment="Top" Width="80" Height="30" Click="ClearButton_Click"/>
         <Label Content="Combine numbers" HorizontalAlignment="Center" Margin="872,546,152,145" VerticalAlignment="Center" Width="170" FontSize="15" HorizontalContentAlignment="Center" Height="30"/>
-        <Button x:Name="CombineButton" Style="{StaticResource BTNCORNER}" Content="Combine" HorizontalAlignment="Left" Margin="885,630,0,0" VerticalAlignment="Top" Width="80" Height="40" FontSize="16" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal" Click="CombineButton_Click"/>
-        <Button x:Name="clearCombinationsButton1" Style="{StaticResource BTNCORNER}" Content="Clear" HorizontalAlignment="Left" Margin="1072,630,0,0" VerticalAlignment="Top" Width="80" Height="40" FontSize="16" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal" Click="ClearCombinationsButton_Click"/>
-        <Label x:Name="drawLabel" Content="Draw #" HorizontalAlignment="Left" Margin="30,30,0,0" VerticalAlignment="Top" Width="110" FontSize="14"/>
+        <Label x:Name="CombinationsCount" HorizontalAlignment="Center" Margin="782,505,242,186" VerticalAlignment="Center" Width="170" FontSize="15" HorizontalContentAlignment="Left" Height="30"/>
+        <Button x:Name="CombineButton" Style="{StaticResource BTNCORNER}" Content="COMBINE" HorizontalAlignment="Left" Margin="885,630,0,0" VerticalAlignment="Top" Width="80" Height="40" Click="CombineButton_Click"/>
+        <Button x:Name="clearCombinationsButton1" Style="{StaticResource BTNCORNER}" Content="CLEAR" HorizontalAlignment="Left" Margin="1072,630,0,0" VerticalAlignment="Top" Width="80" Height="40" Click="ClearCombinationsButton_Click"/>
+        <Label x:Name="drawLabel" Content="Draw #" HorizontalAlignment="Left" Margin="36,30,0,0" VerticalAlignment="Top" Width="110" FontSize="14"/>
         <DataGrid x:Name="dataGridView" HorizontalAlignment="Left" Height="450" Margin="794,60,0,0" VerticalAlignment="Top" Width="250" GridLinesVisibility="None" FontSize="14" BorderThickness="0" ClipToBounds="True" Visibility="Hidden"/>
-        <Button x:Name="PartialCombinationsButton" Style="{StaticResource BTNCORNER}" Content="Partial" HorizontalAlignment="Left" Margin="978,630,0,0" VerticalAlignment="Top" Width="80" Height="40" FontSize="16" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal" Click="PartialCombinationsButton_Click"/>
+        <Button x:Name="PartialCombinationsButton" Style="{StaticResource BTNCORNER}" Content="PARTIAL" HorizontalAlignment="Left" Margin="978,630,0,0" VerticalAlignment="Top" Width="80" Height="40" Click="PartialCombinationsButton_Click"/>
         <ComboBox x:Name="FilterComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="34" Margin="744,648,0,0">
             <ComboBoxItem>2</ComboBoxItem>
             <ComboBoxItem IsSelected="True">3</ComboBoxItem>
@@ -60,12 +61,12 @@
         </ComboBox>
         <TextBox x:Name="chosenNumbersTextBox" HorizontalAlignment="Left" Height="40" Margin="744,581,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="408" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="11"/>
         <Label Content="Filter" HorizontalAlignment="Left" Margin="743,624,0,72" VerticalAlignment="Center" Width="46" HorizontalContentAlignment="Left" Height="25" RenderTransformOrigin="0.587,0.8"/>
-        <Button x:Name="SpecifyNumbersToFilter" Style="{StaticResource BTNCORNER}" Content="Numbers&#xD;&#xA;to filter" HorizontalAlignment="Left" Margin="791,630,0,0" VerticalAlignment="Top" Width="80" Height="40" FontSize="11" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal"/>
+        <Button x:Name="AdvancedCombinerButton" Style="{StaticResource BTNCORNER}" Content="ADVANCED" HorizontalAlignment="Left" Margin="791,630,0,0" VerticalAlignment="Top" Width="80" Height="40" Click="AdvancedCombinerButton_Click"/>
         <CheckBox x:Name="EvensOddsCheckBox" Content="Remove evens-only&#xA;&amp; odds-only combinations" HorizontalAlignment="Left" Margin="569,639,0,0" VerticalAlignment="Top" IsChecked="True"/>
         <TextBox x:Name="HowManyDrawsTextBox" Height="24" TextWrapping="Wrap" Width="50" HorizontalAlignment="Left" Margin="569,582,0,0" VerticalAlignment="Top" Text="30" VerticalContentAlignment="Center"/>
-        <Label Content="How many draws consider" HorizontalAlignment="Left" Margin="564,556,0,0" VerticalAlignment="Top" Width="198" FontSize="12"/>
+        <Label Content="Consider last:" HorizontalAlignment="Left" Margin="564,556,0,0" VerticalAlignment="Top" Width="85" FontSize="12"/>
         <Label Content="Check consequent combinations" HorizontalAlignment="Center" Margin="97,486,860,205" VerticalAlignment="Center" Width="237" FontSize="15" HorizontalContentAlignment="Center" Height="30"/>
-        <Button x:Name="TestButton" Style="{StaticResource BTNCORNER}" Content="Check" HorizontalAlignment="Left" Margin="223,530,0,0" VerticalAlignment="Top" Width="80" Height="30" FontSize="16" BorderThickness="0" Background="#FF64C8FF" FontWeight="Normal" Click="CheckConsequentCombinationsButton_Click"/>
+        <Button x:Name="TestButton" Style="{StaticResource BTNCORNER}" Content="CHECK" HorizontalAlignment="Left" Margin="223,530,0,0" VerticalAlignment="Top" Width="80" Height="30" Background="#FF64C8FF" Click="CheckConsequentCombinationsButton_Click"/>
         <Label Content="Size" HorizontalAlignment="Left" Margin="112,532,0,164" VerticalAlignment="Center" Width="46" HorizontalContentAlignment="Left" Height="25" RenderTransformOrigin="0.587,0.8"/>
         <ComboBox x:Name="ConsequentComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="34" Margin="149,535,0,0">
             <ComboBoxItem>2</ComboBoxItem>
