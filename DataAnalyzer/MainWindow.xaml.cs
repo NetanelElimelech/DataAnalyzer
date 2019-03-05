@@ -389,12 +389,7 @@ namespace DataAnalyzer
                 //For: 1 2 6 8 11 14 15 16 18 20 27 29 30 31 34 36 37
                 //And: 15 18 20 27 29 30 31 34 36 37
                 //And: 11 12 13 14 15 16 17 18 19 20 21
-                if (//combination.Contains("2 ")
-                //    && combination.Contains("11") //1
-                //    && combination.Contains("31")
-                //&& combination.Contains("14") //14
-                //&& combination.Contains("37") //37
-                !combination.Contains("29 30 31")
+                if (!combination.Contains("29 30 31")
                 && !combination.Contains("11 37")
                 && !combination.Contains("14 37")
                 && !combination.Contains("15 37")
@@ -423,21 +418,13 @@ namespace DataAnalyzer
                 && !combination.Contains("15 29")
                 && !combination.Contains("15 30")
                 && !combination.Contains("15 31")
-                && !combination.Contains("14 27") //14
+                && !combination.Contains("14 27")
                 && !combination.Contains("15 27")
                 && !(combination.Contains("6") && combination.Contains("16"))
                 && !(combination.Contains("6") && combination.Contains("29"))
                 && !(combination.Contains("16") && combination.Contains("29"))
                 && !(combination.Contains("16") && combination.Contains("34"))
                 && !(combination.Contains("29") && combination.Contains("34"))
-
-                //    && !combination.Contains("8 37")
-                //    && !combination.Contains("5 25")
-                //    && !combination.Contains("5 29")
-                //    && !combination.Contains("5 31")
-                //    && !combination.Contains("5 35")
-                //    && !combination.Contains("5 37")
-                //    && !(combination.Contains("3 4") && !combination.Contains("22 23"))
                 && !(combination.Contains("1 2") && combination.Contains("11 12"))
                 && !(combination.Contains("1 2") && combination.Contains("14 15"))
                 && !(combination.Contains("1 2") && combination.Contains("15 16"))
@@ -451,9 +438,6 @@ namespace DataAnalyzer
                 && !(combination.Contains("14 15") && combination.Contains("30 31"))
                 && !(combination.Contains("15 16") && combination.Contains("30 31"))
                 && !(combination.Contains("15 16") && combination.Contains("29 30"))
-                //&& !(combination.Contains("28") && combination.Contains("29") && combination.Contains("30"))
-                //&& !(combination.Contains("3") && combination.Contains("24") && combination.Contains("25"))
-                //&& !(combination.Contains("9") && combination.Contains("24") && combination.Contains("25"))
 
                 //&& !(combination.LastIndexOf("18") == 12)
                 //&& !(combination.LastIndexOf("18") == 13)

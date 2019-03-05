@@ -53,13 +53,71 @@ namespace DataAnalyzer
         private void CombineButtonADV_Click(object sender, RoutedEventArgs e)
         {
             outputTextBoxADV.Clear();
-            Combine();
+            CombineAndDisplay();
         }
 
-        void Combine()
+        void CombineAndDisplay()
         {
             string fileContent = FetchFileFromUrl();
+            int[][] wonDrawsArray = CustomArray.CropArray(CustomArray.CreateIntArrayFromString(fileContent));
 
+            List<Tuple<int, int>> tupleList = GetControlCombsLengthAndAmount(wonDrawsArray);
+
+            int[] chosenNumbers = CustomArray.ParseStringArray(Regex.Split(chosenNumbersTextBoxADV.Text, @"(?=\s)"));
+            var combinationsSix = chosenNumbers.Combinations(6);
+            int[][] tempCombinationsSixArrayInt = CustomArray.CreateCombinationsArray(combinationsSix, 6);
+
+            for (int i = 0; i < tupleList.Count; i++)
+            {
+                tempCombinationsSixArrayInt = CreateCombinationsArrayToBeDisplayed(chosenNumbers, tempCombinationsSixArrayInt, tupleList, i, wonDrawsArray);
+            }
+
+            //Display
+            int count = 0;
+            for (int i = 0; i < tempCombinationsSixArrayInt.Length; i++)
+            {
+                string combination = "";
+                for (int j = 0; j < tempCombinationsSixArrayInt[i].Length; j++)
+                {
+                    combination += $"{tempCombinationsSixArrayInt[i][j].ToString()} ";
+                }
+
+                //For: 1 2 8 10 11 12 14 18 22 25 26 27 29 31 33 35
+
+                if (combination.Contains("11")
+                && !combination.Contains("11 25")
+                && !combination.Contains("11 26")
+                && !combination.Contains("11 27")
+                && !combination.Contains("11 29")
+                && !combination.Contains("11 31")
+                && !combination.Contains("11 33")
+                && !combination.Contains("11 35")
+                && !combination.Contains("12 25")
+                && !combination.Contains("12 26")
+                && !combination.Contains("12 27")
+                && !combination.Contains("12 29")
+                && !combination.Contains("12 31")
+                && !combination.Contains("12 33")
+                && !combination.Contains("12 35")
+                && !combination.Contains("14 27")
+                && !combination.Contains("14 29")
+                && !combination.Contains("14 31")
+                && !combination.Contains("14 33")
+                && !combination.Contains("14 35")
+                && !(combination.Contains("10") && combination.Contains("11") && combination.Contains("12"))
+                && !(combination.Contains("25") && combination.Contains("26") && combination.Contains("27"))
+                )
+                {
+                    count++;
+                    outputTextBoxADV.AppendText($"{combination}\n");
+                }
+            }
+            CombinationsCount.Content = $"Count: {count}";
+            count = 0;
+        }
+
+        List<Tuple<int, int>> GetControlCombsLengthAndAmount(int[][] wonDrawsArray)
+        {
             List<Tuple<int, int>> tupleList = new List<Tuple<int, int>>();
 
             Dictionary<CheckBox, bool?> checkBoxesADV = new Dictionary<CheckBox, bool?>()
@@ -76,51 +134,42 @@ namespace DataAnalyzer
                 if (pair.Value == true)
                 {
                     if (pair.Key == TwosCheckBoxADV)
-                        tupleList.Add(Tuple.Create(2, int.Parse(TwosHowManyDrawsTextBox.Text)));
+                        tupleList.Add(Tuple.Create(2, HowManyDrawsConsider(TwosHowManyDrawsTextBox.Text, wonDrawsArray)));
                     else if (pair.Key == ThreesCheckBoxADV)
-                        tupleList.Add(Tuple.Create(3, int.Parse(ThreesHowManyDrawsTextBox.Text)));
+                        tupleList.Add(Tuple.Create(3, HowManyDrawsConsider(ThreesHowManyDrawsTextBox.Text, wonDrawsArray)));
                     else if (pair.Key == FoursCheckBoxADV)
-                        tupleList.Add(Tuple.Create(4, int.Parse(FoursHowManyDrawsTextBox.Text)));
+                        tupleList.Add(Tuple.Create(4, HowManyDrawsConsider(FoursHowManyDrawsTextBox.Text, wonDrawsArray)));
                     else if (pair.Key == FivesCheckBoxADV)
-                        tupleList.Add(Tuple.Create(5, int.Parse(FivesHowManyDrawsTextBox.Text)));
+                        tupleList.Add(Tuple.Create(5, HowManyDrawsConsider(FivesHowManyDrawsTextBox.Text, wonDrawsArray)));
                     else if (pair.Key == SixsCheckBoxADV)
-                        tupleList.Add(Tuple.Create(6, int.Parse(SixsHowManyDrawsTextBox.Text)));
+                        tupleList.Add(Tuple.Create(6, HowManyDrawsConsider(SixsHowManyDrawsTextBox.Text, wonDrawsArray)));
                 }
             }
 
-            int[] chosenNumbers = CustomArray.ParseStringArray(Regex.Split(chosenNumbersTextBoxADV.Text, @"(?=\s)"));
-            var combinationsSix = chosenNumbers.Combinations(6);
-            int[][] tempCombinationsSixArrayInt = CustomArray.CreateCombinationsArray(combinationsSix, 6);
-
-            for (int i = 0; i < tupleList.Count; i++)
-            {
-                tempCombinationsSixArrayInt = CreateCombinationsArrayToBeDisplayed(chosenNumbers, tempCombinationsSixArrayInt, tupleList, i, fileContent);
-            }
-
-            //Display
-            for (int i = 0; i < tempCombinationsSixArrayInt.Length; i++)
-            {
-                string combination = "";
-                for (int j = 0; j < tempCombinationsSixArrayInt[i].Length; j++)
-                {
-                    combination += $"{tempCombinationsSixArrayInt[i][j].ToString()} ";
-                }
-
-                //For: 1 2 6 8 11 14 15 16 18 20 27 29 30 31 34 36 37
-
-                //if (!combination.Contains("29 30 31")
-                //&& !combination.Contains("11 37")
-                //)
-                //{
-                    outputTextBoxADV.AppendText($"{combination}\n");
-                //}
-            }
-            CombinationsCount.Content = $"Count: {tempCombinationsSixArrayInt.Length}";
+            return tupleList;
         }
 
-        int[][] CreateCombinationsArrayToBeDisplayed(int[] chosenNumbers, int[][] tempCombArray, List<Tuple<int, int>> tupleList, int index, string fileContent)
+        int HowManyDrawsConsider(string stringToParse, int[][] wonDrawsArray)
         {
-            
+            int howManyDrawsConsider = 0;
+
+            bool success = int.TryParse(stringToParse, out int parsedValue);
+
+            if (success)
+            {
+                howManyDrawsConsider = parsedValue;
+            }
+
+            else
+            {
+                howManyDrawsConsider = wonDrawsArray.Length;
+            }
+
+            return howManyDrawsConsider;
+        }
+
+        int[][] CreateCombinationsArrayToBeDisplayed(int[] chosenNumbers, int[][] tempCombArray, List<Tuple<int, int>> tupleList, int index, int[][] wonDrawsArray)
+        {
             // Build combinations of five, four, three numbers
             var combinationsShort = chosenNumbers.Combinations(tupleList[index].Item1);
 
@@ -128,9 +177,9 @@ namespace DataAnalyzer
             int[][] tempControlArrayInt = CustomArray.CreateCombinationsArray(combinationsShort, tupleList[index].Item1);
 
             // Create temp array of draws
-            int[][] controlDrawsArray = CustomArray.CropArray(CustomArray.CreateIntArrayFromString(fileContent));
+            //int[][] controlDrawsArray = CustomArray.CropArray(CustomArray.CreateIntArrayFromString(fileContent));
 
-            int[][] tempControlArray = CustomArray.CompareArrays(CustomArray.EPurpose.control, tempControlArrayInt, controlDrawsArray, tempControlArrayInt.Length, tupleList[index].Item2, tupleList[index].Item1);
+            int[][] tempControlArray = CustomArray.CompareArrays(CustomArray.EPurpose.control, tempControlArrayInt, wonDrawsArray, tempControlArrayInt.Length, tupleList[index].Item2, tupleList[index].Item1);
             //Filter array
             int[][] finalControlArrayFiltered = CustomArray.ReduceArrayByPushingOutNulls(tempControlArray);
 
@@ -144,13 +193,13 @@ namespace DataAnalyzer
             {
                 //Remove evens-only or odds-only combinations
                 int[][] combinationsArrayWithoutEvensOnlyOrOddsOnly = CustomArray.RemoveEvensOrOddsOnlyComb(tempCombinationsArray);
-                //Push out nulls
+                //Pull out nulls
                 finalCombinationsArrayFiltered = CustomArray.ReduceArrayByPushingOutNulls(combinationsArrayWithoutEvensOnlyOrOddsOnly);
             }
 
             else
             {
-                //Push out nulls
+                //Pull out nulls
                 finalCombinationsArrayFiltered = CustomArray.ReduceArrayByPushingOutNulls(tempCombinationsArray);
             }
 
