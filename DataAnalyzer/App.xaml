@@ -32,6 +32,11 @@
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="TextBlock.FontWeight" Value="Bold" />
         </Style>
+        <Style TargetType="TextBox" x:Key="SquareTextBox">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="TextBlock.FontSize" Value="12"/>
+        </Style>
 
     </Application.Resources>
 </Application>
