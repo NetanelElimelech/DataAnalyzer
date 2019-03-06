@@ -280,6 +280,7 @@ namespace DataAnalyzer
                                 test++;
                             }
                         }
+
                         if (test == combFilter)
                         {
                             outputArray[i] = null;
@@ -322,23 +323,23 @@ namespace DataAnalyzer
                         if (Array.Exists(innerLoopArray[j], control => control == item))
                         {
                             test++;
+                        }
 
-                            if (test == combFilter)
+                        if (test == combFilter)
+                        {
+                            if (purpose == EPurpose.control)
                             {
-                                if (purpose == EPurpose.control)
-                                {
-                                    outputArray[i] = outerLoopArray[i];
-                                    break;
-                                }
+                                outputArray[i] = outerLoopArray[i];
+                                break;
+                            }
 
-                                else if (purpose == EPurpose.statistics)
+                            else if (purpose == EPurpose.statistics)
+                            {
+                                for (int k = 0; k < combFilter; k++)
                                 {
-                                    for (int k = 0; k < combFilter; k++)
-                                    {
-                                        outputArray[i][k] = outerLoopArray[i][k];
-                                    }
-                                    outputArray[i][outputArray[i].Length - 1]++;
+                                    outputArray[i][k] = outerLoopArray[i][k];
                                 }
+                                outputArray[i][outputArray[i].Length - 1]++;
                             }
                         }
                     }
