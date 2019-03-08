@@ -96,16 +96,50 @@ namespace DataAnalyzer
 
             for (int i = 0; i < combinations.Length; i++)
             {
-                //For: 1 2 6 8 11 14 15 16 18 20 27 29 30 31 34 36 37
+                //For: 8 10 11 12 13 15 16 17 18 20 21 22 23 26 27 29 30 33 34 35 37
 
-                if (!combinations[i].Contains("29 30 31")
-                && !combinations[i].Contains("11 37")
-                && !(combinations[i].Contains("6") && combinations[i].Contains("16"))
-                )
-                {
+                //if (!combinations[i].Contains("11 12 13")
+                //&& !combinations[i].Contains("15 16 17")
+                //&& !combinations[i].Contains("8 23")
+                //&& !combinations[i].Contains("8 26")
+                //&& !combinations[i].Contains("8 27")
+                //&& !combinations[i].Contains("8 29")
+                //&& !combinations[i].Contains("8 30")
+                //&& !combinations[i].Contains("8 33")
+                //&& !combinations[i].Contains("8 34")
+                //&& !combinations[i].Contains("8 35")
+                //&& !combinations[i].Contains("8 37")
+                //&& !combinations[i].Contains("10 26")
+                //&& !combinations[i].Contains("10 27")
+                //&& !combinations[i].Contains("10 29")
+                //&& !combinations[i].Contains("10 30")
+                //&& !combinations[i].Contains("10 33")
+                //&& !combinations[i].Contains("10 34")
+                //&& !combinations[i].Contains("10 35")
+                //&& !combinations[i].Contains("10 37")
+                //&& !combinations[i].Contains("10 37")
+                //&& !combinations[i].Contains("10 37")
+                //&& !combinations[i].Contains("11 26")
+                //&& !combinations[i].Contains("11 27")
+                //&& !combinations[i].Contains("11 29")
+                //&& !combinations[i].Contains("11 30")
+                //&& !combinations[i].Contains("11 33")
+                //&& !combinations[i].Contains("11 34")
+                //&& !combinations[i].Contains("11 35")
+                //&& !combinations[i].Contains("11 37")
+                //&& !combinations[i].Contains("12 26")
+                //&& !combinations[i].Contains("12 27")
+                //&& !combinations[i].Contains("12 29")
+                //&& !combinations[i].Contains("12 30")
+                //&& !combinations[i].Contains("12 33")
+                //&& !combinations[i].Contains("12 34")
+                //&& !combinations[i].Contains("12 35")
+                //&& !combinations[i].Contains("12 37")
+                //)
+                //{
                     outputTextBoxADV.AppendText($"{combinations[i]}\n");
                     count++;
-                }
+                //}
             }
             CombinationsCount.Content = $"Count: {count}";
         }
@@ -120,14 +154,14 @@ namespace DataAnalyzer
             int[] chosenNumbers = CustomArray.ParseStringArray(Regex.Split(chosenNumbersTextBoxADV.Text, @"(?=\s)"));
             var combinationsSix = chosenNumbers.Combinations(6);
             int[][] tempCombinationsSixArrayInt = CustomArray.CreateCombinationsArray(combinationsSix, 6);
-            int[][] combinationsArray = new int[tempCombinationsSixArrayInt.Length][];
+            //int[][] combinationsArray = new int[tempCombinationsSixArrayInt.Length][];
 
             for (int i = 0; i < tupleList.Count; i++)
             {
-                combinationsArray = CreateCombinationsArrayToBeDisplayed(chosenNumbers, tempCombinationsSixArrayInt, tupleList, i, wonDrawsArray);
+                tempCombinationsSixArrayInt = CreateCombinationsArrayToBeDisplayed(chosenNumbers, tempCombinationsSixArrayInt, tupleList, i, wonDrawsArray);
             }
 
-            return combinationsArray;
+            return tempCombinationsSixArrayInt;
         }
 
         List<Tuple<int, int>> GetControlCombsLengthAndAmount(int[][] wonDrawsArray)
