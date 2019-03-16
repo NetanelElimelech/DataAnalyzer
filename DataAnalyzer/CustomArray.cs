@@ -298,7 +298,7 @@ namespace DataAnalyzer
             return outputArray;
         }
 
-        public static int[][] CompareArrays(EPurpose purpose, int[][] outerLoopArray, int[][] innerLoopArray, int outputArraySize, int breakhere, int combFilter)
+        public static int[][] CompareArrays(EPurpose purpose, int[][] outerLoopArray, int[][] innerLoopArray, int outputArraySize, int startIteration, int breakhere, int combFilter)
         {
             int[][] outputArray = new int[outputArraySize][];
 
@@ -314,7 +314,7 @@ namespace DataAnalyzer
             
             for (int i = 0; i < outerLoopArray.Length; i++)
             {
-                for (int j = 0; j < breakhere; j++)
+                for (int j = startIteration; j < breakhere; j++)
                 {
                     int test = 0;
 

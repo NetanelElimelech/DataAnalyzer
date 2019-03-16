@@ -8,23 +8,23 @@
         Title="Advanced Combiner" Height="520" Width="800" ResizeMode="NoResize">
     <Grid>
         <Label Content="Chosen numbers" HorizontalAlignment="Center" Margin="207,5,207,417" VerticalAlignment="Top" Width="380" FontSize="15" HorizontalContentAlignment="Center" Height="30"/>
-        <Button x:Name="CombineButtonADV" Style="{StaticResource BTNCORNER}" Content="COMBINE" HorizontalAlignment="Left" Margin="471,279,0,0" VerticalAlignment="Top" Width="80" Height="40" Click="CombineButtonADV_Click"/>
-        <Button x:Name="clearCombinationsButtonADV" Style="{StaticResource BTNCORNER}" Content="CLEAR" HorizontalAlignment="Left" Margin="471,210,0,0" VerticalAlignment="Top" Width="80" Height="40" Click="ClearCombinationsButtonADV_Click"/>
+        <Button x:Name="CombineButtonADV" Style="{StaticResource BTNCORNER}" Content="COMBINE" HorizontalAlignment="Left" Margin="501,279,0,0" VerticalAlignment="Top" Width="80" Height="40" Click="CombineButtonADV_Click"/>
+        <Button x:Name="clearCombinationsButtonADV" Style="{StaticResource BTNCORNER}" Content="CLEAR" HorizontalAlignment="Left" Margin="501,210,0,0" VerticalAlignment="Top" Width="80" Height="40" Click="ClearCombinationsButtonADV_Click"/>
         <TextBox x:Name="chosenNumbersTextBoxADV" HorizontalAlignment="Center" Height="30" Margin="200,35,200,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="380" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="11"/>
         <CheckBox x:Name="EvensOddsCheckBoxADV" Content="Remove evens-only &amp; odds-only combinations" HorizontalAlignment="Left" Margin="234,418,0,0" VerticalAlignment="Top" IsChecked="True" Width="275"/>
-        <TextBox x:Name="TwosHowManyDrawsTextBox" Height="24" TextWrapping="Wrap" Width="50" HorizontalAlignment="Left" Margin="316,204,0,0" VerticalAlignment="Top" Text="10" VerticalContentAlignment="Center"/>
+        <TextBox x:Name="TwosHowManyDrawsTextBox" Height="24" TextWrapping="Wrap" Width="50" HorizontalAlignment="Left" Margin="286,204,0,0" VerticalAlignment="Top" Text="10" VerticalContentAlignment="Center"/>
         <Label Content="Consider last:" HorizontalAlignment="Left" Margin="316,170,0,0" VerticalAlignment="Top" Width="85" FontSize="12"/>
         <TextBox x:Name="outputTextBoxADV" HorizontalAlignment="Right" Height="380" Margin="0,35,20,20" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" BorderThickness="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
-        <CheckBox x:Name="TwosCheckBoxADV" Content="Twos" HorizontalAlignment="Left" Margin="234,206,0,0" VerticalAlignment="Top" IsChecked="False"/>
-        <TextBox x:Name="ThreesHowManyDrawsTextBox" Height="24" TextWrapping="Wrap" Width="50" HorizontalAlignment="Left" Margin="316,244,0,0" VerticalAlignment="Top" Text="30" VerticalContentAlignment="Center"/>
-        <CheckBox x:Name="ThreesCheckBoxADV" Content="Threes" HorizontalAlignment="Left" Margin="234,246,0,0" VerticalAlignment="Top" IsChecked="False"/>
-        <TextBox x:Name="FoursHowManyDrawsTextBox" Height="24" TextWrapping="Wrap" Width="50" HorizontalAlignment="Left" Margin="316,284,0,0" VerticalAlignment="Top" Text="100" VerticalContentAlignment="Center"/>
-        <CheckBox x:Name="FoursCheckBoxADV" Content="Fours" HorizontalAlignment="Left" Margin="234,286,0,0" VerticalAlignment="Top" IsChecked="False"/>
-        <TextBox x:Name="FivesHowManyDrawsTextBox" Height="24" TextWrapping="Wrap" Width="50" HorizontalAlignment="Left" Margin="316,324,0,0" VerticalAlignment="Top" Text="ALL" VerticalContentAlignment="Center"/>
-        <CheckBox x:Name="FivesCheckBoxADV" Content="Fives" HorizontalAlignment="Left" Margin="234,326,0,0" VerticalAlignment="Top" IsChecked="False"/>
-        <TextBox x:Name="SixsHowManyDrawsTextBox" Height="24" TextWrapping="Wrap" Width="50" HorizontalAlignment="Left" Margin="316,364,0,0" VerticalAlignment="Top" Text="ALL" VerticalContentAlignment="Center"/>
-        <CheckBox x:Name="SixsCheckBoxADV" Content="Sixs" HorizontalAlignment="Left" Margin="234,366,0,0" VerticalAlignment="Top" IsChecked="False"/>
-        <Button x:Name="CancelButtonADV" Style="{StaticResource BTNCORNER}" Content="CANCEL" HorizontalAlignment="Left" Margin="471,349,0,0" VerticalAlignment="Top" Width="80" Height="40" />
+        <CheckBox x:Name="TwosCheckBoxADV" IsChecked="{Binding _ignoreLastIsEnabled}" Content="Twos" HorizontalAlignment="Left" Margin="204,206,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="ThreesHowManyDrawsTextBox" Height="24" TextWrapping="Wrap" Width="50" HorizontalAlignment="Left" Margin="286,244,0,0" VerticalAlignment="Top" Text="30" VerticalContentAlignment="Center"/>
+        <CheckBox x:Name="ThreesCheckBoxADV" Content="Threes" HorizontalAlignment="Left" Margin="204,246,0,0" VerticalAlignment="Top" IsChecked="False"/>
+        <TextBox x:Name="FoursHowManyDrawsTextBox" Height="24" TextWrapping="Wrap" Width="50" HorizontalAlignment="Left" Margin="286,284,0,0" VerticalAlignment="Top" Text="100" VerticalContentAlignment="Center"/>
+        <CheckBox x:Name="FoursCheckBoxADV" Content="Fours" HorizontalAlignment="Left" Margin="204,286,0,0" VerticalAlignment="Top" IsChecked="False"/>
+        <TextBox x:Name="FivesHowManyDrawsTextBox" Height="24" TextWrapping="Wrap" Width="50" HorizontalAlignment="Left" Margin="286,324,0,0" VerticalAlignment="Top" Text="ALL" VerticalContentAlignment="Center"/>
+        <CheckBox x:Name="FivesCheckBoxADV" Content="Fives" HorizontalAlignment="Left" Margin="204,326,0,0" VerticalAlignment="Top" IsChecked="False"/>
+        <TextBox x:Name="SixsHowManyDrawsTextBox" Height="24" TextWrapping="Wrap" Width="50" HorizontalAlignment="Left" Margin="286,364,0,0" VerticalAlignment="Top" Text="ALL" VerticalContentAlignment="Center"/>
+        <CheckBox x:Name="SixsCheckBoxADV" Content="Sixs" HorizontalAlignment="Left" Margin="204,366,0,0" VerticalAlignment="Top" IsChecked="False"/>
+        <Button x:Name="CancelButtonADV" Style="{StaticResource BTNCORNER}" Content="CANCEL" HorizontalAlignment="Left" Margin="501,349,0,0" VerticalAlignment="Top" Width="80" Height="40" />
         <TextBox x:Name="excludeTextBoxADV" AcceptsReturn="True" HorizontalAlignment="Left" Height="380" Margin="20,35,608,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" BorderThickness="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
         <Label Content="Exlude" HorizontalAlignment="Center" Margin="20,5,624,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="150" FontSize="14"/>
         <Label Content="Result" HorizontalAlignment="Center" Margin="624,5,20,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="150" FontSize="14 "/>
@@ -35,5 +35,6 @@
         <TextBox x:Name="Include4TextBox" Style="{StaticResource SquareTextBox}" HorizontalAlignment="Left" Height="30" Margin="419,114,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30"/>
         <TextBox x:Name="Include5TextBox" Style="{StaticResource SquareTextBox}" HorizontalAlignment="Left" Height="30" Margin="469,114,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30"/>
         <Label x:Name="CombinationsCount" HorizontalAlignment="Center" Margin="624,438,20,0" VerticalAlignment="Top" Width="150" FontSize="15" HorizontalContentAlignment="Left" Height="30"/>
+        <CheckBox x:Name="IgnoreLastCheckBoxADV" IsEnabled="{Binding _ignoreLastIsEnabled}" Content="Ignore last draw" HorizontalAlignment="Left" Margin="354,206,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>

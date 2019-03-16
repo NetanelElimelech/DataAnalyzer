@@ -22,7 +22,7 @@ namespace DataAnalyzer
 
             combinationsToCheckArray = BuildConsequentComb(maxNumber, innerArraySize);
             int[][] intArrayFromFile = CropArray(CreateIntArrayFromString(fileContent));
-            int[][] comparedArray = CompareArrays(EPurpose.statistics, combinationsToCheckArray, intArrayFromFile, combinationsToCheckArray.Length, intArrayFromFile.Length, innerArraySize);
+            int[][] comparedArray = CompareArrays(EPurpose.statistics, combinationsToCheckArray, intArrayFromFile, combinationsToCheckArray.Length, startIteration: 0, intArrayFromFile.Length, innerArraySize);
             comparedArrayFiltered = ReduceArrayByPushingOutNulls(comparedArray);
         }
 

@@ -69,6 +69,7 @@
     <Compile Include="CustomMessageBox.xaml.cs">
       <DependentUpon>CustomMessageBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DataBinding.cs" />
     <Compile Include="DrawsCombiner.cs" />
     <Compile Include="LastAppearanceCombiner.cs" />
     <Compile Include="NumbersCombiner.cs" />

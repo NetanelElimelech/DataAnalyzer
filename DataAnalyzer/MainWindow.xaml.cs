@@ -340,7 +340,7 @@ namespace DataAnalyzer
             // Create final array of draws
             int howManyDrawsConsider = HowManyDrawsConsider(controlDrawsArray);
 
-            int[][] tempControlArray = CustomArray.CompareArrays(CustomArray.EPurpose.control, outerLoopArray: tempControlArrayInt, innerLoopArray: controlDrawsArray, tempControlArrayInt.Length, howManyDrawsConsider, combFilter);
+            int[][] tempControlArray = CustomArray.CompareArrays(CustomArray.EPurpose.control, outerLoopArray: tempControlArrayInt, innerLoopArray: controlDrawsArray, tempControlArrayInt.Length, startIteration: 0, howManyDrawsConsider, combFilter);
             //Filter array
             int[][] finalControlArrayFiltered = CustomArray.ReduceArrayByPushingOutNulls(tempControlArray);
 
@@ -418,7 +418,7 @@ namespace DataAnalyzer
 
             int howManyDrawsConsider = HowManyDrawsConsider(controlDrawsArray);
             //Compare
-            int[][] tempControlArray = CustomArray.CompareArrays(CustomArray.EPurpose.statistics, outerLoopArray: tempControlArrayInt, innerLoopArray: controlDrawsArray, tempControlArrayInt.Length, howManyDrawsConsider, combFilter);
+            int[][] tempControlArray = CustomArray.CompareArrays(CustomArray.EPurpose.statistics, outerLoopArray: tempControlArrayInt, innerLoopArray: controlDrawsArray, tempControlArrayInt.Length, startIteration: 0, howManyDrawsConsider, combFilter);
 
             //Filter array
             int[][] finalControlArrayFiltered = CustomArray.ReduceArrayByPushingOutNulls(tempControlArray);

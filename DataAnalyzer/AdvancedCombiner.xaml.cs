@@ -13,6 +13,9 @@ namespace DataAnalyzer
         public AdvancedCombiner()
         {
             InitializeComponent();
+            DataBinding dataBinding = new DataBinding();
+            TwosCheckBoxADV.DataContext = dataBinding;
+            IgnoreLastCheckBoxADV.DataContext = dataBinding;
         }
 
         private string FetchFileFromUrl()
@@ -211,11 +214,18 @@ namespace DataAnalyzer
             int[] chosenNumbers = CustomArray.ParseStringArray(Regex.Split(chosenNumbersTextBoxADV.Text, @"(?=\s)"));
             var combinationsSix = chosenNumbers.Combinations(6);
             int[][] tempCombinationsSixArrayInt = CustomArray.CreateCombinationsArray(combinationsSix, 6);
-            //int[][] combinationsArray = new int[tempCombinationsSixArrayInt.Length][];
 
             for (int i = 0; i < tupleList.Count; i++)
             {
-                tempCombinationsSixArrayInt = CreateCombinationsArrayToBeDisplayed(chosenNumbers, tempCombinationsSixArrayInt, tupleList, i, wonDrawsArray);
+                if (IgnoreLastCheckBoxADV.IsChecked == true)
+                {
+                    tempCombinationsSixArrayInt = CreateCombinationsArrayToBeDisplayed(chosenNumbers, tempCombinationsSixArrayInt, tupleList, i, startIteration: 1, wonDrawsArray);
+                }
+
+                else
+                {
+                    tempCombinationsSixArrayInt = CreateCombinationsArrayToBeDisplayed(chosenNumbers, tempCombinationsSixArrayInt, tupleList, i, startIteration: 0, wonDrawsArray);
+                }
             }
 
             return tempCombinationsSixArrayInt;
@@ -273,7 +283,7 @@ namespace DataAnalyzer
             return howManyDrawsConsider;
         }
 
-        int[][] CreateCombinationsArrayToBeDisplayed(int[] chosenNumbers, int[][] tempCombArray, List<Tuple<int, int>> tupleList, int index, int[][] wonDrawsArray)
+        int[][] CreateCombinationsArrayToBeDisplayed(int[] chosenNumbers, int[][] tempCombArray, List<Tuple<int, int>> tupleList, int index, int startIteration, int[][] wonDrawsArray)
         {
             // Build combinations of five, four, three numbers
             var combinationsShort = chosenNumbers.Combinations(tupleList[index].Item1);
@@ -284,7 +294,7 @@ namespace DataAnalyzer
             // Create temp array of draws
             //int[][] controlDrawsArray = CustomArray.CropArray(CustomArray.CreateIntArrayFromString(fileContent));
 
-            int[][] tempControlArray = CustomArray.CompareArrays(CustomArray.EPurpose.control, tempControlArrayInt, wonDrawsArray, tempControlArrayInt.Length, tupleList[index].Item2, tupleList[index].Item1);
+            int[][] tempControlArray = CustomArray.CompareArrays(CustomArray.EPurpose.control, tempControlArrayInt, wonDrawsArray, tempControlArrayInt.Length, startIteration, tupleList[index].Item2, tupleList[index].Item1);
             //Filter array
             int[][] finalControlArrayFiltered = CustomArray.ReduceArrayByPushingOutNulls(tempControlArray);
 
