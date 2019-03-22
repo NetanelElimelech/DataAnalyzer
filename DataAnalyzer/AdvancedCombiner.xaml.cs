@@ -46,6 +46,11 @@ namespace DataAnalyzer
 
         private void CombineButtonADV_Click(object sender, RoutedEventArgs e)
         {
+            if (TwosCheckBoxADV.IsChecked == false)
+            {
+                IgnoreLastCheckBoxADV.IsChecked = false;
+            }
+
             outputTextBoxADV.Clear();
             CombineAndDisplay();
         }
