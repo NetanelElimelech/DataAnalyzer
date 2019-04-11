@@ -156,7 +156,6 @@ namespace DataAnalyzer
         {
             PrepareGUIforTableView();
             DisplayFileContent();
-
             string fileContent = FetchFileFromUrl();
             int maxNumber = GetMaxNumber();
 
