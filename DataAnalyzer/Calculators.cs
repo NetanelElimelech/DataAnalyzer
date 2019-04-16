@@ -8,7 +8,8 @@ namespace DataAnalyzer
     {        
         public static double CalculatePercentRate(double firstNumber, double secondNumber)
         {
-            return Math.Round(firstNumber / secondNumber * 100, 2);
+            return Math.Round(firstNumber / secondNumber, 4);
+            //return Math.Round(firstNumber / secondNumber * 100, 2);
         }
 
         public static int[] CountEverySingleNumber(int arraySize, int[][] inputArray)

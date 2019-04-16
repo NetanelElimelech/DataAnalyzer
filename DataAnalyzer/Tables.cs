@@ -59,7 +59,8 @@ namespace DataAnalyzer
                     row[columnNames[1]] = inputArray[i];
                     if (tableType == ETableType.rate)
                     {
-                        row[columnNames[2]] = $"{Calculators.CalculatePercentRate(inputArray[i], allNumbersCount)}%";
+                        row[columnNames[2]] = $"{Calculators.CalculatePercentRate(inputArray[i], allNumbersCount)}";
+                        //row[columnNames[2]] = $"{Calculators.CalculatePercentRate(inputArray[i], allNumbersCount)}%";
                     }
                     table.Rows.Add(row);
                 }
