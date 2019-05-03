@@ -254,6 +254,20 @@ namespace DataAnalyzer
         private void ClearCombinationsButtonADV_Click(object sender, RoutedEventArgs e)
         {
             outputTextBoxADV.Clear();
+
+            Dictionary<TextBox, string> textBoxes = new Dictionary<TextBox, string>()
+            {
+                { Include1TextBox, "" },
+                { Include2TextBox, "" },
+                { Include3TextBox, "" },
+                { Include4TextBox, "" },
+                { Include5TextBox, "" }
+            };
+
+            foreach (var pair in textBoxes)
+            {
+                pair.Key.Text = pair.Value;
+            }
         }
 
         int[][] ForceInclude(int[][] combArrayUnfiltered, List<int> includedList)

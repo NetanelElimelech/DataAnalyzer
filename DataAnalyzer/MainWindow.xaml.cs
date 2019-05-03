@@ -261,7 +261,7 @@ namespace DataAnalyzer
                 { num3TextBox, "" },
                 { num4TextBox, "" },
                 { num5TextBox, "" },
-                { num6TextBox, "" },
+                { num6TextBox, "" }
             };
 
             foreach (var pair in textBoxes)
