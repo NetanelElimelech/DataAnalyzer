@@ -23,7 +23,8 @@ namespace DataAnalyzer
             string fileContent = null;
             try
             {
-                var webRequest = WebRequest.Create(@"https://raw.githubusercontent.com/NetanelElimelech/DataAnalyzer/master/DataAnalyzer/allDraws.txt");
+                //var webRequest = WebRequest.Create(@"https://raw.githubusercontent.com/NetanelElimelech/DataAnalyzer/master/DataAnalyzer/allDraws.txt");
+                var webRequest = WebRequest.Create(@"https://github.com/NetanelElimelech/DataAnalyzer/blob/master/DataAnalyzer/allDraws.txt");
 
                 using (var response = webRequest.GetResponse())
                 using (var content = response.GetResponseStream())
