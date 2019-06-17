@@ -23,7 +23,6 @@ namespace DataAnalyzer
             string fileContent = null;
             try
             {
-                //var webRequest = WebRequest.Create(@"https://raw.githubusercontent.com/NetanelElimelech/DataAnalyzer/master/DataAnalyzer/allDraws.txt");
                 var webRequest = WebRequest.Create(@"https://github.com/NetanelElimelech/DataAnalyzer/blob/master/DataAnalyzer/allDraws.txt");
 
                 using (var response = webRequest.GetResponse())
@@ -77,11 +76,6 @@ namespace DataAnalyzer
             }
         }
 
-        void FilterExclude(string[] combStringArrayUnfiltered)
-        {
-            string[] numbersToExlude = CustomArray.SeparateToLines(excludeTextBoxADV.Text);
-        }
-
         string[] JoinNumbers(int[][] combIntArray)
         {
             string[] combStringArray = new string[combIntArray.Length];
@@ -105,15 +99,8 @@ namespace DataAnalyzer
 
             for (int i = 0; i < combinations.Length; i++)
             {
-                //For: 1 7 8 9 10 11 12 13 15 16 17 18 22 23 25 27 28 29 30 35
-
-                //if (!combinations[i].Contains("7 8 9")
-                
-                //)
-                //{
-                    outputTextBoxADV.AppendText($"{combinations[i]}\n");
-                    count++;
-                //}
+                outputTextBoxADV.AppendText($"{combinations[i]}\n");
+                count++;
             }
             CombinationsCount.Content = $"Count: {count}";
         }

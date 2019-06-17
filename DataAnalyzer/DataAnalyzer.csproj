@@ -72,7 +72,6 @@
     <Compile Include="DataBinding.cs" />
     <Compile Include="DrawsCombiner.cs" />
     <Compile Include="LastAppearanceCombiner.cs" />
-    <Compile Include="NumbersCombiner.cs" />
     <Compile Include="RatingCombiner.cs" />
     <Compile Include="Tables.cs" />
     <Page Include="AdvancedCombiner.xaml">

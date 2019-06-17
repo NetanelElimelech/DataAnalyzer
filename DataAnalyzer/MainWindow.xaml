@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DataAnalyzer"
         mc:Ignorable="d"
-        Title="Data Analyzer - v. 1.6" Height="750" Width="1200" ResizeMode="NoResize">
+        Title="Data Analyzer - v. 2.0" Height="750" Width="1200" ResizeMode="NoResize">
 
 
     <Grid>

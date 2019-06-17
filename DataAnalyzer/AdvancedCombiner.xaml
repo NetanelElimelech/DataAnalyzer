@@ -25,8 +25,6 @@
         <TextBox x:Name="SixsHowManyDrawsTextBox" Height="24" TextWrapping="Wrap" Width="50" HorizontalAlignment="Left" Margin="286,364,0,0" VerticalAlignment="Top" Text="ALL" VerticalContentAlignment="Center"/>
         <CheckBox x:Name="SixsCheckBoxADV" Content="Sixs" HorizontalAlignment="Left" Margin="204,366,0,0" VerticalAlignment="Top" IsChecked="False"/>
         <Button x:Name="CancelButtonADV" Style="{StaticResource BTNCORNER}" Content="CANCEL" HorizontalAlignment="Left" Margin="501,349,0,0" VerticalAlignment="Top" Width="80" Height="40" />
-        <TextBox x:Name="excludeTextBoxADV" AcceptsReturn="True" HorizontalAlignment="Left" Height="380" Margin="20,35,608,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150" BorderThickness="1" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
-        <Label Content="Exlude" HorizontalAlignment="Center" Margin="20,5,624,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="150" FontSize="14"/>
         <Label Content="Result" HorizontalAlignment="Center" Margin="624,5,20,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="150" FontSize="14 "/>
         <Label Content="Include:" HorizontalAlignment="Center" Margin="201,115,530,0" VerticalAlignment="Top" HorizontalContentAlignment="Left" Width="63" FontSize="14"/>
         <TextBox x:Name="Include1TextBox" Style="{StaticResource SquareTextBox}" HorizontalAlignment="Left" Height="30" Margin="269,114,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30"/>
@@ -36,5 +34,6 @@
         <TextBox x:Name="Include5TextBox" Style="{StaticResource SquareTextBox}" HorizontalAlignment="Left" Height="30" Margin="469,114,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="30"/>
         <Label x:Name="CombinationsCount" HorizontalAlignment="Center" Margin="624,438,20,0" VerticalAlignment="Top" Width="150" FontSize="15" HorizontalContentAlignment="Left" Height="30"/>
         <CheckBox x:Name="IgnoreLastCheckBoxADV" IsEnabled="{Binding _ignoreLastIsEnabled}" Content="Ignore last draw" HorizontalAlignment="Left" Margin="354,206,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="CombineButtonSerial" Style="{StaticResource BTNCORNER}" Content="Serial Comb" HorizontalAlignment="Left" Margin="51,279,0,0" VerticalAlignment="Top" Width="80" Height="40"/>
     </Grid>
 </Window>
