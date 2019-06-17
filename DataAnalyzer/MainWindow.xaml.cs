@@ -318,55 +318,6 @@ namespace DataAnalyzer
             return howManyDrawsConsider;
         }
 
-        int[][] CreateCombinationsArrayToBeDisplayed(int combFilter, string fileContent)
-        {
-            int[] chosenNumbers = CustomArray.ParseStringArray(Regex.Split(chosenNumbersTextBox.Text, @"(?=\s)"));
-
-            // Combine numbers
-            var combinationsSix = chosenNumbers.Combinations(6);
-
-            // Build combinations of five, four, three numbers
-            var combinationsShort = chosenNumbers.Combinations(combFilter);
-
-            // Create temporary combinations array
-            int[][] tempCombinationsSixArrayInt = CustomArray.CreateCombinationsArray(combinationsSix, 6);
-
-            // Create control array of five, four, three numbers
-            int[][] tempControlArrayInt = CustomArray.CreateCombinationsArray(combinationsShort, combFilter);
-
-            // Create temp array of draws
-            int[][] controlDrawsArray = CustomArray.CropArray(CustomArray.CreateIntArrayFromString(fileContent));
-
-            // Create final array of draws
-            int howManyDrawsConsider = HowManyDrawsConsider(controlDrawsArray);
-
-            int[][] tempControlArray = CustomArray.CompareArrays(CustomArray.EPurpose.control, outerLoopArray: tempControlArrayInt, innerLoopArray: controlDrawsArray, tempControlArrayInt.Length, startIteration: 0, howManyDrawsConsider, combFilter);
-            //Filter array
-            int[][] finalControlArrayFiltered = CustomArray.ReduceArrayByPushingOutNulls(tempControlArray);
-
-            //Create temporary combinations array to be filtered
-            int[][] tempCombinationsArray = CustomArray.CompareArrays(tempCombinationsSixArrayInt, finalControlArrayFiltered, tempCombinationsSixArrayInt.Length, combFilter);
-
-            //Prepare final combinations array
-            int[][] finalCombinationsArrayFiltered;
-
-            if (EvensOddsCheckBox.IsChecked == true)
-            {
-                //Remove evens-only or odds-only combinations
-                int[][] combinationsArrayWithoutEvensOnlyOrOddsOnly = CustomArray.RemoveEvensOrOddsOnlyComb(tempCombinationsArray);
-                //Push out nulls
-                finalCombinationsArrayFiltered = CustomArray.ReduceArrayByPushingOutNulls(combinationsArrayWithoutEvensOnlyOrOddsOnly);
-            }
-
-            else
-            {
-                //Push out nulls
-                finalCombinationsArrayFiltered = CustomArray.ReduceArrayByPushingOutNulls(tempCombinationsArray);
-            }
-
-            return finalCombinationsArrayFiltered;
-        }
-
         private void PartialCombinationsButton_Click(object sender, RoutedEventArgs e)
         {
             PrepareGUIforTableView();
@@ -579,7 +530,7 @@ namespace DataAnalyzer
             //Prepare final combinations array
             int[][] finalCombinationsArrayFiltered;
 
-            if (EvensOddsCheckBoxADV.IsChecked == true)
+            if (EvensOddsCheckBox.IsChecked == true)
             {
                 //Remove evens-only or odds-only combinations
                 int[][] combinationsArrayWithoutEvensOnlyOrOddsOnly = CustomArray.RemoveEvensOrOddsOnlyComb(tempCombinationsArray);
@@ -659,6 +610,5 @@ namespace DataAnalyzer
             }
             return CustomArray.ReduceArrayByPushingOutNulls(tempArrayInclude);
         }
-
     }
 }
